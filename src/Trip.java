@@ -3,7 +3,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
+import java.util.TimeZone;
 
 public class Trip {
     private Application passenger;
@@ -100,7 +103,56 @@ public class Trip {
     }
 
     public String possibleArrive(){
-        //get Depart Date
+        double lat1 = 0;
+        double lat2 = 0;
+        double lon1 = 0;
+        double lon2 = 0;
+        double earthRadius = 6371.01 * 0.621;
+        if (passenger.getOrigin() == "America/Los_Angeles"){
+            lat1 = Math.toRadians(34.05223);
+            lon1 = Math.toRadians(-118.24368);
+        }
+        else if (passenger.getOrigin() == "America/New_york"){
+            lat1 = Math.toRadians(40.7648);
+            lon1 = Math.toRadians(-73.9808);
+        }
+        else if (passenger.getOrigin() == "America/Detroit"){
+            lat1 = Math.toRadians(42.331427);
+            lon1 = Math.toRadians(-83.045754);
+        }
+        if (passenger.getDestination() == "America/Los_Angeles"){
+            lat2 = Math.toRadians(34.05223);
+            lon2 = Math.toRadians(-118.24368);
+        }
+        else if (passenger.getDestination() == "America/New_york"){
+            lat2 = Math.toRadians(40.7648);
+            lon2 = Math.toRadians(-73.9808);
+        }
+        else if (passenger.getDestination() == "America/Detroit"){
+            lat1 = Math.toRadians(42.331427);
+            lon1 = Math.toRadians(-83.045754);
+        }
+
+        double distance = Math.round(earthRadius * Math.acos(Math.sin(lat1)*Math.sin(lat2)
+                + Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1 - lon2)));
+
+        double distance1 = distance/50;
+        double hours = Math.floor(distance1);
+        double minutes = Math.ceil((distance1 - hours) * 60);
+
+
+//        Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
+//        newYorkTime.setTimeInMillis(newYorkTime.getDepartTime);
+//
+//        passenger.getDepartTime();
+//
+//        newYorkTime.add(Calendar.HOUR, 3);
+//
+//        Calendar denverTime = new GregorianCalendar(TimeZone.getTimeZone("America/Denver"));
+//        denverTime.setTimeInMillis(localTime.getTimeInMillis());
+//        hour = denverTime.get(Calendar.HOUR);
+//        minute = denverTime.get(Calendar.MINUTE);
+
         //get Depart Time
         //get Depart From
         //get Arrive Place
