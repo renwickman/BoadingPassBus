@@ -26,7 +26,7 @@ public class Trip {
         this.passenger = newApplicant;
     }
 
-    public String enterDepart(){
+    public String enterDepart() {
         //Place into Map?  It will have a key.
         //String getDisplayName()	is used to return a name of this time zone suitable
         //for presentation to the user in the default locale.
@@ -42,7 +42,7 @@ public class Trip {
         return scanDepart.nextLine();
     }
 
-    public String enterArrive(){
+    public String enterArrive() {
         //Place into Map?  It will have a key.
         //String getDisplayName()	is used to return a name of this time zone suitable
         //for presentation to the user in the default locale.
@@ -58,7 +58,7 @@ public class Trip {
         return scanArrive.nextLine();
     }
 
-    public String departDate(){
+    public String departDate() {
         //void setID(String ID) is used to set the time zone ID
         //boolean before(Date date) tests if current date is before the given date.
         //boolean after(Date date) tests if current date is after the given date.
@@ -68,7 +68,7 @@ public class Trip {
         return scanDepartDate.nextLine();
     }
 
-    public String departTime(){
+    public String departTime() {
         //Place into Map? It will have a key.
         //void setID(String ID) is used to set the time zone ID
         //String getID() is used to get the ID of this time zone
@@ -87,7 +87,7 @@ public class Trip {
         return scanDepartTime.nextLine();
     }
 
-    public void updateTrip(int appId){
+    public void updateTrip(int appId) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Application.class)
                 .buildSessionFactory();
@@ -107,7 +107,7 @@ public class Trip {
         }
     }
 
-    public String possibleArrive(){
+    public String possibleArrive() {
         final String DATE_FORMAT = "MM/dd/yyyy hh:mm a";
         TimeZone endZone = TimeZone.getTimeZone(enterArrive());
         ZoneId endZoneId = ZoneId.of(enterArrive());
@@ -121,40 +121,36 @@ public class Trip {
         double earthRadius = 6371.01 * 0.621;
 
 
-        if (passenger.getOrigin() == "1"){
+        if (passenger.getOrigin() == "1") {
             lat1 = Math.toRadians(34.05223);
             lon1 = Math.toRadians(-118.24368);
-        }
-        else if (passenger.getOrigin() == "2"){
+        } else if (passenger.getOrigin() == "2") {
             lat1 = Math.toRadians(40.7648);
             lon1 = Math.toRadians(-73.9808);
-        }
-        else if (passenger.getOrigin() == "3"){
+        } else if (passenger.getOrigin() == "3") {
             lat1 = Math.toRadians(42.331427);
             lon1 = Math.toRadians(-83.045754);
         }
 
-        if (passenger.getDestination() == "1"){
+        if (passenger.getDestination() == "1") {
             lat2 = Math.toRadians(34.05223);
             lon2 = Math.toRadians(-118.24368);
-        }
-        else if (passenger.getDestination() == "2"){
+        } else if (passenger.getDestination() == "2") {
             lat2 = Math.toRadians(40.7648);
             lon2 = Math.toRadians(-73.9808);
-        }
-        else if (passenger.getDestination() == "3"){
+        } else if (passenger.getDestination() == "3") {
             lat1 = Math.toRadians(42.331427);
             lon1 = Math.toRadians(-83.045754);
         }
 
-        double distance = Math.round(earthRadius * Math.acos(Math.sin(lat1)*Math.sin(lat2)
-                + Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1 - lon2)));
+        double distance = Math.round(earthRadius * Math.acos(Math.sin(lat1) * Math.sin(lat2)
+                + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2)));
 
-        double distance1 = distance/50;
+        double distance1 = distance / 50;
         hours = Math.floor(distance1);
         minutes = Math.ceil((distance1 - hours) * 60);
 
-        if (enterDepart().equals("1")){
+        if (enterDepart().equals("1")) {
             Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
             TimeZone timezone = TimeZone.getTimeZone("America/New_york");
 
@@ -170,8 +166,7 @@ public class Trip {
             endDateTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
             DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
             strDate = dateFormat.format(endDateTime);
-        }
-        else if (enterDepart().equals("2")){
+        } else if (enterDepart().equals("2")) {
             //Calendar into Los Angeles TimeZone
             Calendar laTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
             TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
@@ -189,11 +184,10 @@ public class Trip {
             endDateTime = laZonedDateTime.withZoneSameInstant(laZoneId);
             DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
             strDate = dateFormat.format(endDateTime);
-        }
-        else if (enterDepart().equals("3")){
+        } else if (enterDepart().equals("3")) {
             Calendar detTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
             TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
-            
+
             ZoneId detZoneId = ZoneId.of("America/Detroit");
 
             ZonedDateTime detZonedDateTime = ldt.atZone(detZoneId);
@@ -211,9 +205,4 @@ public class Trip {
 
         return strDate;
     }
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> main
