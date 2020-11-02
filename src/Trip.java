@@ -3,6 +3,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -15,6 +17,8 @@ import java.util.TimeZone;
 
 public class Trip {
     private Application passenger;
+    ZonedDateTime endDateTime;
+    String strDate;
     double minutes;
     double hours;
 
@@ -107,7 +111,6 @@ public class Trip {
         final String DATE_FORMAT = "MM/dd/yyyy hh:mm a";
         TimeZone endZone = TimeZone.getTimeZone(enterArrive());
         ZoneId endZoneId = ZoneId.of(enterArrive());
-        ZonedDateTime endDateTime;
         String leaveDateTime = passenger.getDepartTime() + " " + passenger.getDepartDate();
         LocalDateTime ldt = LocalDateTime.parse(leaveDateTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
 
@@ -165,6 +168,8 @@ public class Trip {
             ZonedDateTime endZoneTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
 
             endDateTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
         }
         else if (enterDepart().equals("2")){
             Calendar laTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
@@ -181,6 +186,8 @@ public class Trip {
             ZonedDateTime endZoneTime = laZonedDateTime.withZoneSameInstant(laZoneId);
 
             endDateTime = laZonedDateTime.withZoneSameInstant(laZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
         }
         else if (enterDepart().equals("3")){
             Calendar detTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
@@ -195,49 +202,12 @@ public class Trip {
 
             ZonedDateTime endZoneTime = detZonedDateTime.withZoneSameInstant(detZoneId);
             //Make String into a Date/Time
+            endDateTime = detZonedDateTime.withZoneSameInstant(detZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
         }
 
 
-//        Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
-//        newYorkTime.setTimeInMillis(newYorkTime.getDepartTime);
-//
-//        passenger.getDepartTime();
-//
-//        newYorkTime.add(Calendar.HOUR, 3);
-//
-//        Calendar denverTime = new GregorianCalendar(TimeZone.getTimeZone("America/Denver"));
-//        denverTime.setTimeInMillis(localTime.getTimeInMillis());
-//        hour = denverTime.get(Calendar.HOUR);
-//        minute = denverTime.get(Calendar.MINUTE);
-
-        //get Depart Time
-        //get Depart From
-        //get Arrive Place
-        //calculate ETA
-        //Los Angeles to New York - flight distance = 2,452 miles, 5 hours, 24 minutes
-        //Detroit to New York - flight distance = 482 miles, 1 hour, 28 minutes
-        return "";
+        return strDate;
     }
 }
-
-
-//            String dateInString = "11-01-2020 05:01 PM";
-//            LocalDateTime ldt = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern(DATE_FORMAT));
-//
-//            ZoneId chicagoZoneId = ZoneId.of("America/Chicago");
-//            System.out.println("TimeZone : " + chicagoZoneId);
-//
-//            //LocalDateTime + ZoneId = ZonedDateTime
-//            ZonedDateTime chicagoZonedDateTime = ldt.atZone(chicagoZoneId);
-//            System.out.println("Date (Chicago) : " + chicagoZonedDateTime);
-//
-//            ZoneId newYokZoneId = ZoneId.of("America/New_York");
-//            System.out.println("TimeZone : " + newYokZoneId);
-//
-//            ZonedDateTime nyDateTime = chicagoZonedDateTime.withZoneSameInstant(newYokZoneId);
-//            System.out.println("Date (New York) : " + nyDateTime);
-//
-//            DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT);
-//            System.out.println("\n---DateTimeFormatter---");
-//            System.out.println("Date (Chicago) : " + format.format(chicagoZonedDateTime));
-//            System.out.println("Date (New York) : " + format.format(nyDateTime));
