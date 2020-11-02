@@ -172,6 +172,7 @@ public class Trip {
             strDate = dateFormat.format(endDateTime);
         }
         else if (enterDepart().equals("2")){
+            //Calendar into Los Angeles TimeZone
             Calendar laTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
             TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
 
