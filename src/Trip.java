@@ -32,9 +32,6 @@ public class Trip {
     }
 
     public String enterDepart() {
-        //Place into Map?  It will have a key.
-        //String getDisplayName()	is used to return a name of this time zone suitable
-        //for presentation to the user in the default locale.
         Scanner scanDepart = new Scanner(System.in);
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
         System.out.println("Where are you departing from?");
@@ -226,6 +223,7 @@ public class Trip {
             endDateTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
             DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
             strDate = dateFormat.format(endDateTime);
+
         } else if (enterDepart().equals("2")) {
             //Calendar into Los Angeles TimeZone
             Calendar laTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
@@ -244,7 +242,7 @@ public class Trip {
             endDateTime = laZonedDateTime.withZoneSameInstant(laZoneId);
             DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
             strDate = dateFormat.format(endDateTime);
-        } else if (enterDepart().equals("3")) {
+        }  else if (enterDepart().equals("3")) {
             Calendar detTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
             TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
 
@@ -258,6 +256,54 @@ public class Trip {
             ZonedDateTime endZoneTime = detZonedDateTime.withZoneSameInstant(detZoneId);
             //Make String into a Date/Time
             endDateTime = detZonedDateTime.withZoneSameInstant(detZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("4")) {
+            Calendar phoenixTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
+            TimeZone timezone = TimeZone.getTimeZone("America/Phoenix");
+
+            ZoneId detZoneId = ZoneId.of("America/Phoenix");
+
+            ZonedDateTime phoenixZonedDateTime = ldt.atZone(detZoneId);
+
+            phoenixTime.add(Calendar.HOUR, (int) hours);
+            phoenixTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = phoenixZonedDateTime.withZoneSameInstant(detZoneId);
+            //Make String into a Date/Time
+            endDateTime = phoenixZonedDateTime.withZoneSameInstant(detZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("5")) {
+            Calendar louTime = new GregorianCalendar(TimeZone.getTimeZone("America/Louisville"));
+            TimeZone timezone = TimeZone.getTimeZone("America/Louisville");
+
+            ZoneId louZoneId = ZoneId.of("America/Louisville");
+
+            ZonedDateTime louZonedDateTime = ldt.atZone(louZoneId);
+
+            louTime.add(Calendar.HOUR, (int) hours);
+            louTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = louZonedDateTime.withZoneSameInstant(louZoneId);
+            //Make String into a Date/Time
+            endDateTime = louZonedDateTime.withZoneSameInstant(louZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("6")) {
+            Calendar indTime = new GregorianCalendar(TimeZone.getTimeZone("America/Indiana/Indianapolis"));
+            TimeZone timezone = TimeZone.getTimeZone("America/Indiana/Indianapolis");
+
+            ZoneId indZoneId = ZoneId.of("America/Indiana/Indianapolis");
+
+            ZonedDateTime detZonedDateTime = ldt.atZone(indZoneId);
+
+            indTime.add(Calendar.HOUR, (int) hours);
+            indTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = detZonedDateTime.withZoneSameInstant(indZoneId);
+            //Make String into a Date/Time
+            endDateTime = detZonedDateTime.withZoneSameInstant(indZoneId);
             DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
             strDate = dateFormat.format(endDateTime);
         }
