@@ -581,4 +581,24 @@ public class Main {
             System.out.println("Date (New York) : " + format.format(nyDateTime));
 
     -------------------------------------------------------------------------------------------
+    ZonedDateTime class is used to store all
+    date and time fields, to a precision of
+    nanoseconds, and a time-zone with a zone
+    offset used to handle ambiguous local
+    date-times.
+
+        //ZonedDateTime class is used to store all
+        //date and time fields, to a precision of
+        //nanoseconds, and a time-zone with a zone
+        //offset used to handle ambiguous local
+        //date-times.
+
+        LocalDate represents a date (year, month, day (yyyy-MM-dd))
+
+        LocalTime represents a time (hour, minute, second and nanoseconds (HH-mm-ss-ns))
+
+        LocalDateTime represents both a date and a time (yyyy-MM-dd-HH-mm-ss-ns)
+
+        DateTimeFormatter is a Formatter for displaying and parsing date-time objects
+
     -------------------------------------------------------------------------------------------
