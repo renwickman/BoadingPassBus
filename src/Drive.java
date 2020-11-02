@@ -5,7 +5,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.Scanner;
 
-public class Flight {
+public class Drive {
     private Application passenger;
 //    class Flight(Application passenger){
 //        this.passenger = passenger;

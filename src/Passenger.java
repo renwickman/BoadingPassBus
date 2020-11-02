@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Passenger {
     private Application newApplicant;
     private Date date;
-    public Flight flight;
+    public Drive drive;
 
     SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
             .addAnnotatedClass(Application.class)
@@ -92,9 +92,7 @@ public class Passenger {
 //        Flight flight = new Flight(newApplicant);
     }
 
-    public static void main(String[] args) {
-        new Passenger();
-    }
+   
 
 
 }
