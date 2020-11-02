@@ -20,7 +20,7 @@ public class Itinerary {
         Random rand = new Random();
         String pass ="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i <= 18; i++){
+        for (int i = 0; i <= 12; i++){
             int randIndex = rand.nextInt(pass.length());
                 res.append(pass.charAt(randIndex));
             }
@@ -52,7 +52,6 @@ public class Itinerary {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 

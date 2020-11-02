@@ -94,7 +94,6 @@ public class Passenger {
     public Passenger(){
         createApplicant();
         updateInfo(newApplicant.getId());
-//        Drive drive = new Drive(newApplicant);
     }
 
    
