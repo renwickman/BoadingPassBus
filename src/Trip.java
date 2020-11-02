@@ -296,14 +296,14 @@ public class Trip {
 
             ZoneId indZoneId = ZoneId.of("America/Indiana/Indianapolis");
 
-            ZonedDateTime detZonedDateTime = ldt.atZone(indZoneId);
+            ZonedDateTime indZonedDateTime = ldt.atZone(indZoneId);
 
             indTime.add(Calendar.HOUR, (int) hours);
             indTime.add(Calendar.MINUTE, (int) minutes);
 
-            ZonedDateTime endZoneTime = detZonedDateTime.withZoneSameInstant(indZoneId);
+            ZonedDateTime endZoneTime = indZonedDateTime.withZoneSameInstant(indZoneId);
             //Make String into a Date/Time
-            endDateTime = detZonedDateTime.withZoneSameInstant(indZoneId);
+            endDateTime = indZonedDateTime.withZoneSameInstant(indZoneId);
             DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
             strDate = dateFormat.format(endDateTime);
         }
