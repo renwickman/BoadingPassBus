@@ -4,6 +4,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -13,6 +15,8 @@ import java.util.TimeZone;
 
 public class Trip {
     private Application passenger;
+    double minutes;
+    double hours;
 
     public Trip(Application newApplicant) {
         this.passenger = newApplicant;
@@ -65,7 +69,7 @@ public class Trip {
         //void setID(String ID) is used to set the time zone ID
         //String getID() is used to get the ID of this time zone
         Scanner scanDepartTime = new Scanner(System.in);
-        System.out.println("What time do you want to leave?");
+        System.out.println("What time do you want to leave? (Select a number to choose a time)");
         System.out.println("1: 6:00 am");
         System.out.println("2: 8:00 am");
         System.out.println("3: 10:00 am");
@@ -100,35 +104,42 @@ public class Trip {
     }
 
     public String possibleArrive(){
+        final String DATE_FORMAT = "MM/dd/yyyy hh:mm a";
+        TimeZone endZone = TimeZone.getTimeZone(enterArrive());
+        ZoneId endZoneId = ZoneId.of(enterArrive());
+        ZonedDateTime endDateTime;
+        String leaveDateTime = passenger.getDepartTime() + " " + passenger.getDepartDate();
+        LocalDateTime ldt = LocalDateTime.parse(leaveDateTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
+
         double lat1 = 0;
         double lat2 = 0;
         double lon1 = 0;
         double lon2 = 0;
         double earthRadius = 6371.01 * 0.621;
-        final String DATE_FORMAT = "hh:mm a";
 
-        if (passenger.getOrigin() == "America/Los_Angeles"){
+
+        if (passenger.getOrigin() == "1"){
             lat1 = Math.toRadians(34.05223);
             lon1 = Math.toRadians(-118.24368);
         }
-        else if (passenger.getOrigin() == "America/New_york"){
+        else if (passenger.getOrigin() == "2"){
             lat1 = Math.toRadians(40.7648);
             lon1 = Math.toRadians(-73.9808);
         }
-        else if (passenger.getOrigin() == "America/Detroit"){
+        else if (passenger.getOrigin() == "3"){
             lat1 = Math.toRadians(42.331427);
             lon1 = Math.toRadians(-83.045754);
         }
 
-        if (passenger.getDestination() == "America/Los_Angeles"){
+        if (passenger.getDestination() == "1"){
             lat2 = Math.toRadians(34.05223);
             lon2 = Math.toRadians(-118.24368);
         }
-        else if (passenger.getDestination() == "America/New_york"){
+        else if (passenger.getDestination() == "2"){
             lat2 = Math.toRadians(40.7648);
             lon2 = Math.toRadians(-73.9808);
         }
-        else if (passenger.getDestination() == "America/Detroit"){
+        else if (passenger.getDestination() == "3"){
             lat1 = Math.toRadians(42.331427);
             lon1 = Math.toRadians(-83.045754);
         }
@@ -137,27 +148,52 @@ public class Trip {
                 + Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1 - lon2)));
 
         double distance1 = distance/50;
-        double hours = Math.floor(distance1);
-        double minutes = Math.ceil((distance1 - hours) * 60);
+        hours = Math.floor(distance1);
+        minutes = Math.ceil((distance1 - hours) * 60);
 
-        if (enterDepart().equals("America/New_york")){
-            //Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
-            //denverTime.add(HOURS, 48);
-            //denverTime.add(MINUTES, 50);
+        if (enterDepart().equals("1")){
+            Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
             TimeZone timezone = TimeZone.getTimeZone("America/New_york");
-            String leaveTime = passenger.getDepartTime();
-            LocalDateTime ldt = LocalDateTime.parse(leaveTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
+
+            ZoneId nyZoneId = ZoneId.of("America/New_york");
+
+            ZonedDateTime nyZonedDateTime = ldt.atZone(nyZoneId);
+
+            newYorkTime.add(Calendar.HOUR, (int) hours);
+            newYorkTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
+
+            endDateTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
         }
-        else if (enterDepart().equals("America/Los_angeles")){
+        else if (enterDepart().equals("2")){
+            Calendar laTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
             TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
-            String leaveTime = passenger.getDepartTime();
-            LocalDateTime ldt = LocalDateTime.parse(leaveTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
+
+            ZoneId laZoneId = ZoneId.of("America/Los_angeles");
+
+            ZonedDateTime laZonedDateTime = ldt.atZone(laZoneId);
+
             //Make String into a Date/Time
+            laTime.add(Calendar.HOUR, (int) hours);
+            laTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = laZonedDateTime.withZoneSameInstant(laZoneId);
+
+            endDateTime = laZonedDateTime.withZoneSameInstant(laZoneId);
         }
-        else if (enterDepart().equals("America/Detroit")){
+        else if (enterDepart().equals("3")){
+            Calendar detTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
             TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
-            String leaveTime = passenger.getDepartTime();
-            LocalDateTime ldt = LocalDateTime.parse(leaveTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
+            
+            ZoneId detZoneId = ZoneId.of("America/Detroit");
+
+            ZonedDateTime detZonedDateTime = ldt.atZone(detZoneId);
+
+            detTime.add(Calendar.HOUR, (int) hours);
+            detTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = detZonedDateTime.withZoneSameInstant(detZoneId);
             //Make String into a Date/Time
         }
 
@@ -183,3 +219,25 @@ public class Trip {
         return "";
     }
 }
+
+
+//            String dateInString = "11-01-2020 05:01 PM";
+//            LocalDateTime ldt = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern(DATE_FORMAT));
+//
+//            ZoneId chicagoZoneId = ZoneId.of("America/Chicago");
+//            System.out.println("TimeZone : " + chicagoZoneId);
+//
+//            //LocalDateTime + ZoneId = ZonedDateTime
+//            ZonedDateTime chicagoZonedDateTime = ldt.atZone(chicagoZoneId);
+//            System.out.println("Date (Chicago) : " + chicagoZonedDateTime);
+//
+//            ZoneId newYokZoneId = ZoneId.of("America/New_York");
+//            System.out.println("TimeZone : " + newYokZoneId);
+//
+//            ZonedDateTime nyDateTime = chicagoZonedDateTime.withZoneSameInstant(newYokZoneId);
+//            System.out.println("Date (New York) : " + nyDateTime);
+//
+//            DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT);
+//            System.out.println("\n---DateTimeFormatter---");
+//            System.out.println("Date (Chicago) : " + format.format(chicagoZonedDateTime));
+//            System.out.println("Date (New York) : " + format.format(nyDateTime));
