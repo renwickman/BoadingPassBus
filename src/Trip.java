@@ -23,6 +23,7 @@ public class Trip {
     double lat2 = 0;
     double lon1 = 0;
     double lon2 = 0;
+    double distance;
     double minutes;
     double hours;
 
@@ -37,12 +38,12 @@ public class Trip {
         Scanner scanDepart = new Scanner(System.in);
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
         System.out.println("Where are you departing from?");
-        System.out.println("1. " + "America/New_York");
-        System.out.println("2. " + "America/Los_Angeles");
-        System.out.println("3. " + "America/Detroit");
-        System.out.println("4. " + "America/Phoenix");
-        System.out.println("5. " + "America/Louisville");
-        System.out.println("6. " + "America/Indiana/Indianapolis");
+        System.out.println("1. America/New_York");
+        System.out.println("2. America/Los_Angeles");
+        System.out.println("3. America/Detroit");
+        System.out.println("4. America/Phoenix");
+        System.out.println("5. America/Louisville");
+        System.out.println("6. America/Indiana/Indianapolis");
         switch (scanDepart.nextLine()) {
             case "1":
                 passenger.setOrigin("America/New_York");
@@ -202,7 +203,7 @@ public class Trip {
         double earthRadius = 6371.01 * 0.621;
 
 
-        double distance = Math.round(earthRadius * Math.acos(Math.sin(lat1) * Math.sin(lat2)
+        distance = Math.round(earthRadius * Math.acos(Math.sin(lat1) * Math.sin(lat2)
                 + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2)));
 
         double distance1 = distance / 50;
