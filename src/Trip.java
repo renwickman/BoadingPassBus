@@ -39,6 +39,29 @@ public class Trip {
         System.out.println("4. " + "America/Phoenix");
         System.out.println("5. " + "America/Louisville");
         System.out.println("6. " + "America/Indiana/Indianapolis");
+        switch (scanDepart.nextLine()) {
+            case "1":
+                passenger.setOrigin("America/New_York");
+                break;
+            case "2":
+                passenger.setOrigin("America/Los_Angeles");
+                break;
+            case "3":
+                passenger.setOrigin("America/Detroit");
+                break;
+            case "4":
+                passenger.setOrigin("America/Phoenix");
+                break;
+            case "5":
+                passenger.setOrigin("America/Louisville");
+                break;
+            case "6":
+                passenger.setOrigin("America/Indiana/Indianapolis");
+                break;
+            default:
+                System.out.printf("%s ... you made an invalid entry", passenger.getName());
+        }
+        //Exceptions or Switch Stmt to make sure they enter the right number.
         return scanDepart.nextLine();
     }
 
@@ -54,6 +77,28 @@ public class Trip {
         System.out.println("4. " + "America/Phoenix");
         System.out.println("5. " + "America/Louisville");
         System.out.println("6. " + "America/Indiana/Indianapolis");
+        switch (scanArrive.nextLine()){
+            case "1":
+                passenger.setDestination("America/New_York");
+                break;
+            case "2":
+                passenger.setDestination("America/Los_Angeles");
+                break;
+            case "3":
+                passenger.setDestination("America/Detroit");
+                break;
+            case "4":
+                passenger.setDestination("America/Phoenix");
+                break;
+            case "5":
+                passenger.setDestination("America/Louisville");
+                break;
+            case "6":
+                passenger.setDestination("America/Indiana/Indianapolis");
+                break;
+            default:
+                System.out.printf("%s ... you made an invalid entry", passenger.getName());
+        }
 
         return scanArrive.nextLine();
     }
@@ -83,6 +128,37 @@ public class Trip {
         System.out.println("7: 6:00 pm");
         System.out.println("8: 8:00 pm");
         System.out.println("9: 10:00 pm");
+        switch (scanDepartTime.nextLine()) {
+            case "1":
+                passenger.setDepartTime("6:00 pm");
+                break;
+            case "2":
+                passenger.setDepartTime("8:00 am");
+                break;
+            case "3":
+                passenger.setDepartTime("10:00 am");
+                break;
+            case "4":
+                passenger.setDepartTime("12:00 pm");
+                break;
+            case "5":
+                passenger.setDepartTime("2:00 pm");
+                break;
+            case "6":
+                passenger.setDepartTime("4:00 pm");
+                break;
+            case "7":
+                passenger.setDepartTime("6:00 pm");
+                break;
+            case "8":
+                passenger.setDepartTime("8:00 pm");
+                break;
+            case "9":
+                passenger.setDepartTime("10:00 pm");
+                break;
+            default:
+                System.out.printf("%s ... you made an invalid entry", passenger.getName());
+        }
         //Exceptions or Switch Stmt to make sure they enter the right number.
         return scanDepartTime.nextLine();
     }
