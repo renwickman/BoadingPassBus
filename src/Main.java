@@ -8,6 +8,7 @@ public class Main {
         trippy.enterArrive();
         trippy.departDate();
         trippy.departTime();
+        trippy.estTimeArrive();
         trippy.updateTrip(pass.getNewApplicant().getId());
         Price pricey = new Price(pass.getNewApplicant());
         pricey.priceUpdate(pass.getNewApplicant().getId());
@@ -16,7 +17,7 @@ public class Main {
         itin.generatePass(pass.getNewApplicant().getId());
         itin.createFile();
         itin.writeToAFile();
-//        Trip(pass);
+
     }
 
 }

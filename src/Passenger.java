@@ -40,6 +40,7 @@ public class Passenger {
 
 
     public String enterEmail(){
+        //REGEX
         Scanner scanEmail = new Scanner(System.in);
         System.out.println("What is your email?");
         return scanEmail.nextLine();
@@ -52,7 +53,6 @@ public class Passenger {
     }
 
     public String enterGender(){
-        //Make into Boolean?
         Scanner scanGender = new Scanner(System.in);
         System.out.println("What is your gender");
         System.out.println("Enter M for Male");
