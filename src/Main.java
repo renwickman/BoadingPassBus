@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
 
         Passenger pass = new Passenger();
-        Trip trippy = new Trip(pass.getNewApplicant());
+/*      Trip trippy = new Trip(pass.getNewApplicant());
         trippy.enterDepart();
         trippy.enterArrive();
         trippy.departDate();
@@ -15,7 +15,7 @@ public class Main {
         itin.createBoardPass();
         itin.generatePass(pass.getNewApplicant().getId());
         itin.createFile();
-        itin.writeToAFile();
+        itin.writeToAFile();*/
 //        Trip(pass);
     }
 

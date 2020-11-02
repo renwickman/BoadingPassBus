@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Passenger {
     private Application newApplicant;
     private Date date;
-    public Trip trip;
 
     SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
             .addAnnotatedClass(Application.class)
@@ -17,27 +16,32 @@ public class Passenger {
 
     Session session = factory.getCurrentSession();
 
+
+    public Passenger(){
+        try {
+            newApplicant = new Application();
+            newApplicant.setName(enterName());
+            newApplicant.setAge(enterAge());
+            newApplicant.setGender(enterGender());
+            newApplicant.setPhone(enterPhone());
+            newApplicant.setEmail(enterEmail());
+            session.beginTransaction();
+            session.save(newApplicant);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.getMessage();
+        } finally {
+            session.close();
+            factory.close();
+        }
+    }
+
     public String enterName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! Welcome to Drive Time!");
         System.out.println("What is your name?");
         return scanner.nextLine();
     }
-
-    void createApplicant() {
-        try {
-            newApplicant = new Application();
-            session.beginTransaction();
-            newApplicant.setName(enterName());
-            session.save(newApplicant);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.getMessage();
-        } finally {
-            factory.close();
-        }
-    }
-
 
     public String enterEmail(){
         Scanner scanEmail = new Scanner(System.in);
@@ -67,36 +71,8 @@ public class Passenger {
         return scanPhone.nextInt();
     }
 
-    public void updateInfo(int appId){
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Application.class)
-                .buildSessionFactory();
-
-        Session session = factory.getCurrentSession();
-
-        try {
-            session.beginTransaction();
-            Application currentApp = session.get(Application.class, appId);
-            currentApp.setAge(enterAge());
-            currentApp.setGender(enterGender());
-            currentApp.setPhone(enterPhone());
-            currentApp.setEmail(enterEmail());
-            session.getTransaction().commit();
-        } finally {
-            factory.close();
-        }
-    }
-
     public Application getNewApplicant(){
         return newApplicant;
     }
-
-    public Passenger(){
-        createApplicant();
-        updateInfo(newApplicant.getId());
-    }
-
-   
-
 
 }
