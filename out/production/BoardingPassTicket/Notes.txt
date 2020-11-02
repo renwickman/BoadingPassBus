@@ -1,0 +1,104 @@
+Java 8 Date/Time API
+
+Java has introduced a new Date and
+Time API since Java 8.
+
+The java.time package contains Java 8 Date
+and Time classes.
+
+java.time.LocalDate class
+java.time.LocalTime class
+java.time.LocalDateTime class
+java.time.MonthDay class
+java.time.OffsetTime class
+java.time.OffsetDateTime class
+java.time.Clock class
+java.time.ZonedDateTime class
+java.time.ZoneId class
+java.time.ZoneOffset class
+java.time.Year class
+java.time.YearMonth class
+java.time.Period class
+java.time.Duration class
+java.time.Instant class
+java.time.DayOfWeek enum
+java.time.Month enum
+-------------------------------------------------------------------
+There are two classes for formatting
+date in java: DateFormat and SimpleDateFormat.
+
+The java.text.DateFormat class
+provides various methods to format
+and parse date and time in java in
+language independent manner.
+
+The DateFormat class is an abstract class.
+java.text.Format is the parent class and
+java.text.SimpleDateFormat is the subclass
+of java.text.DateFormat class.
+
+ In java, converting date into string is
+ called formatting and vice-versa parsing.
+ In other words, formatting means date to
+ string and parsing means string to date.
+---------------------------------------------------
+Java Clock class is used to provide
+an access to the current instant,
+date and time using a time zone.
+It inherits the Object class.
+
+Get Current Date
+System.out.println(java.time.LocalDate.now());
+----------------------------------------------------
+Java ZonedDateTime class is an immutable
+representation of a date-time with a
+time-zone.
+
+It inherits Object class and implements
+the ChronoZonedDateTime interface.
+
+ZonedDateTime class is used to store all
+date and time fields, to a precision of
+nanoseconds, and a time-zone with a zone
+offset used to handle ambiguous local
+date-times.
+-----------------------------------------------------
+Java ZoneId class specifies a time zone
+identifier and provides a rule for
+converting between an Instant and
+a LocalDateTime.
+
+It inherits Object class and implements the
+Serializable interface.
+------------------------------------------------------
+java.sql.Date Methods
+
+1)	void setTime(long time)	changes the current sql date to given time.
+2)	Instant toInstant()	converts current sql date into Instant object.
+3)	LocalDate toLocalDate()	converts current sql date into LocalDate object.
+4)	String toString() converts this sql date object to a string.
+5)	static Date valueOf(LocalDate date)	returns sql date object for the given LocalDate.
+6)	static Date valueOf(String date) returns sql date object for the given String.
+---------------------------------------------------------
+java.util.Date Methods
+
+1)	boolean after(Date date) tests if current date is after the given date.
+2)	boolean before(Date date) tests if current date is before the given date.
+3)	Object clone()	returns the clone object of current date.
+4)	int compareTo(Date date) compares current date with given date.
+5)	boolean equals(Date date) compares current date with given date for equality.
+6)	static Date from(Instant instant) returns an instance of Date object from Instant date.
+7)	long getTime() returns the time represented by this date object.
+8)	int hashCode() returns the hash code value for this date object.
+9)	void setTime(long time)	changes the current date and time to given time.
+10)	Instant toInstant()	converts current date into Instant object.
+11)	String toString() converts this date into Instant object.
+-----------------------------------------------------------------------------
+Java TimeZone Methods
+
+1)  static String[] getAvailableIDs() is used to get all the available IDs supported.
+2)  static TimeZone getDefault() is used to get the default TimeZone for this host.
+3)  String getDisplayName()	is used to return a name of this time zone suitable for presentation to the user in the default locale.
+4)  String getID() is used to get the ID of this time zone
+5)  int getOffset(long date) is used to return the offset of this time zone from UTC at the specified date.
+6)  void setID(String ID) is used to set the time zone ID
