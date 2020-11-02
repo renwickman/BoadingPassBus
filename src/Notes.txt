@@ -344,8 +344,8 @@ public class Main {
             System.out.print("The distance between those points is: " + distance_Between_LatLong(lat1, lon1, lat2, lon2) + " miles\n");
             System.out.println();
 
-            double distance1 = distance_Between_LatLong(lat1, lon1, lat2, lon2)/500;
-            double distance2 = Math.floor(distance_Between_LatLong(lat1, lon1, lat2, lon2)/500);
+            double distance1 = distance_Between_LatLong(lat1, lon1, lat2, lon2)/50;
+            double distance2 = Math.floor(distance_Between_LatLong(lat1, lon1, lat2, lon2)/50);
 
             System.out.println(distance1);
             System.out.println(distance2);
