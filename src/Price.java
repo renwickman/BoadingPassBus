@@ -10,7 +10,7 @@ public class Price {
         this.passenger = newApplicant;
     }
 
-    private int priceCheck(){
+    private float priceCheck(){
         float price = (float) 150.00;
 
         if (passenger.getGender().equals("F")){
@@ -23,7 +23,7 @@ public class Price {
             price = price * .40f;
         }
 
-        return Integer.parseInt(String.valueOf(price));
+        return price;
     }
 
     void priceUpdate(int appId){

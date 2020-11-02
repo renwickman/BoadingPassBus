@@ -44,7 +44,7 @@ public class Application {
     private String boarding_pass;
 
     @Column(name = "total_price")
-    private int total_price;
+    private float total_price;
 
     public int getId() {
         return id;
@@ -128,6 +128,6 @@ public class Application {
 
     public float getTotal_price() { return total_price; }
 
-    public void setTotal_price(int total_price) { this.total_price = total_price; }
+    public void setTotal_price(float total_price) { this.total_price = total_price; }
 
 }
