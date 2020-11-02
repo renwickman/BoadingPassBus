@@ -3,10 +3,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.TimeZone;
+
 
 public class Trip {
     private Application passenger;
@@ -22,16 +25,12 @@ public class Trip {
         Scanner scanDepart = new Scanner(System.in);
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
         System.out.println("Where are you departing from?");
-        System.out.print("America/Indiana/Indianapolis, ");
-        System.out.print("America/Los_Angeles, ");
-        System.out.print("America/Louisville, ");
-        System.out.print("America/New_York, ");
-        System.out.print("America/Denver, ");
-        System.out.print("America/Detroit, ");
-        System.out.print("US/Michigan, ");
-        System.out.print("US/Central, ");
-        System.out.print("US/Eastern, ");
-        System.out.print("US/Arizona");
+        System.out.println("1. " + "America/New_York");
+        System.out.println("2. " + "America/Los_Angeles");
+        System.out.println("3. " + "America/Detroit");
+        System.out.println("4. " + "America/Phoenix");
+        System.out.println("5. " + "America/Louisville");
+        System.out.println("6. " + "America/Indiana/Indianapolis");
         return scanDepart.nextLine();
     }
 
@@ -41,16 +40,13 @@ public class Trip {
         //for presentation to the user in the default locale.
         Scanner scanArrive = new Scanner(System.in);
         System.out.println("Where are you looking to go?");
-        System.out.print("America/Indiana/Indianapolis, ");
-        System.out.print("America/Los_Angeles, ");
-        System.out.print("America/Louisville, ");
-        System.out.print("America/New_York, ");
-        System.out.print("America/Denver, ");
-        System.out.print("America/Detroit, ");
-        System.out.print("US/Michigan, ");
-        System.out.print("US/Central, ");
-        System.out.print("US/Eastern, ");
-        System.out.print("US/Arizona");
+        System.out.println("1. " + "America/New_York");
+        System.out.println("2. " + "America/Los_Angeles");
+        System.out.println("3. " + "America/Detroit");
+        System.out.println("4. " + "America/Phoenix");
+        System.out.println("5. " + "America/Louisville");
+        System.out.println("6. " + "America/Indiana/Indianapolis");
+
         return scanArrive.nextLine();
     }
 
@@ -60,7 +56,7 @@ public class Trip {
         //boolean after(Date date) tests if current date is after the given date.
         Scanner scanDepartDate = new Scanner(System.in);
         System.out.println("When do you want to leave?");
-        System.out.print("Format: MM/DD/YYYY ");
+        System.out.println("Format: MM/DD/YYYY ");
         return scanDepartDate.nextLine();
     }
 
@@ -79,6 +75,7 @@ public class Trip {
         System.out.println("7: 6:00 pm");
         System.out.println("8: 8:00 pm");
         System.out.println("9: 10:00 pm");
+        //Exceptions or Switch Stmt to make sure they enter the right number.
         return scanDepartTime.nextLine();
     }
 
@@ -108,6 +105,7 @@ public class Trip {
         double lon1 = 0;
         double lon2 = 0;
         double earthRadius = 6371.01 * 0.621;
+        final String DATE_FORMAT = "hh:mm a";
 
         if (passenger.getOrigin() == "America/Los_Angeles"){
             lat1 = Math.toRadians(34.05223);
@@ -143,15 +141,23 @@ public class Trip {
         double minutes = Math.ceil((distance1 - hours) * 60);
 
         if (enterDepart().equals("America/New_york")){
+            //Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
+            //denverTime.add(HOURS, 48);
+            //denverTime.add(MINUTES, 50);
             TimeZone timezone = TimeZone.getTimeZone("America/New_york");
-            //Make String into a Date/Time
+            String leaveTime = passenger.getDepartTime();
+            LocalDateTime ldt = LocalDateTime.parse(leaveTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
         }
         else if (enterDepart().equals("America/Los_angeles")){
             TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
+            String leaveTime = passenger.getDepartTime();
+            LocalDateTime ldt = LocalDateTime.parse(leaveTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
             //Make String into a Date/Time
         }
         else if (enterDepart().equals("America/Detroit")){
             TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
+            String leaveTime = passenger.getDepartTime();
+            LocalDateTime ldt = LocalDateTime.parse(leaveTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
             //Make String into a Date/Time
         }
 

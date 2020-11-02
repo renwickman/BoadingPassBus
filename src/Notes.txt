@@ -559,7 +559,7 @@ public class Main {
     US/Alaska (UTC-08:00)
     US/Hawaii (UTC-10:00)
     -------------------------------------------------------------------------------------------
-     String dateInString = "11-01-2020 05:01 PM";
+            String dateInString = "11-01-2020 05:01 PM";
             LocalDateTime ldt = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern(DATE_FORMAT));
 
             ZoneId chicagoZoneId = ZoneId.of("America/Chicago");
