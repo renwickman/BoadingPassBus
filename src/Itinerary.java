@@ -6,6 +6,8 @@ import org.hibernate.cfg.Configuration;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class Itinerary {
@@ -56,8 +58,11 @@ public class Itinerary {
 
 
     public void writeToAFile() {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+
         try{
-//            Files.writeString(filePath, Get Today's Date);
+            Files.writeString(filePath, formatter.format(date));
             Files.writeString(filePath, passenger.getBoarding_pass());
             Files.writeString(filePath, passenger.getName());
 //            Files.writeString(filePath, passenger.getAge());

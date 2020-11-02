@@ -8,7 +8,6 @@ public class Price {
 
     public Price(Application newApplicant){
         this.passenger = newApplicant;
-
     }
 
     private float priceCheck(){

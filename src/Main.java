@@ -17,7 +17,7 @@ public class Main {
         itin.generatePass(pass.getNewApplicant().getId());
         itin.createFile();
         itin.writeToAFile();
-//        Trip(pass);
+
     }
 
 }
