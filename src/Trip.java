@@ -5,40 +5,20 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.Scanner;
 
-public class Flight {
+public class Trip {
     private Application passenger;
-//    class Flight(Application passenger){
-//        this.passenger = passenger;
-//    }
 
-    //ZonedDateTime class is used to store all
-    //date and time fields, to a precision of
-    //nanoseconds, and a time-zone with a zone
-    //offset used to handle ambiguous local
-    //date-times.
-
-    //ZonedDateTime class is used to store all
-    //date and time fields, to a precision of
-    //nanoseconds, and a time-zone with a zone
-    //offset used to handle ambiguous local
-    //date-times.
-
-    //LocalDate represents a date (year, month, day (yyyy-MM-dd))
-
-    //LocalTime represents a time (hour, minute, second and nanoseconds (HH-mm-ss-ns))
-
-    //LocalDateTime represents both a date and a time (yyyy-MM-dd-HH-mm-ss-ns)
-
-    //DateTimeFormatter is a Formatter for displaying and parsing date-time objects
-
+    public Trip(Application newApplicant) {
+        this.passenger = newApplicant;
+    }
 
     public String enterDepart(){
         //Place into Map?  It will have a key.
         //String getDisplayName()	is used to return a name of this time zone suitable
         //for presentation to the user in the default locale.
         Scanner scanDepart = new Scanner(System.in);
-        System.out.println("Hi (name)! Glad that you chose Direct Airlines.  Now let's get started.");
-        System.out.println("Where are you flying from?");
+        System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
+        System.out.println("Where are you departing from?");
         System.out.print("America/Indiana/Indianapolis, ");
         System.out.print("America/Los_Angeles, ");
         System.out.print("America/Louisville, ");
@@ -48,8 +28,6 @@ public class Flight {
         System.out.print("US/Michigan, ");
         System.out.print("US/Central, ");
         System.out.print("US/Eastern, ");
-        System.out.print("US/Alaska, ");
-        System.out.print("US/Hawaii, ");
         System.out.print("US/Arizona");
         return scanDepart.nextLine();
     }
@@ -59,7 +37,7 @@ public class Flight {
         //String getDisplayName()	is used to return a name of this time zone suitable
         //for presentation to the user in the default locale.
         Scanner scanArrive = new Scanner(System.in);
-        System.out.println("Where are you flying to?");
+        System.out.println("Where are you looking to go?");
         System.out.print("America/Indiana/Indianapolis, ");
         System.out.print("America/Los_Angeles, ");
         System.out.print("America/Louisville, ");
@@ -69,8 +47,6 @@ public class Flight {
         System.out.print("US/Michigan, ");
         System.out.print("US/Central, ");
         System.out.print("US/Eastern, ");
-        System.out.print("US/Alaska, ");
-        System.out.print("US/Hawaii, ");
         System.out.print("US/Arizona");
         return scanArrive.nextLine();
     }
@@ -103,7 +79,7 @@ public class Flight {
         return scanDepartTime.nextLine();
     }
 
-    public void updateFlight(int appId){
+    public void updateTrip(int appId){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Application.class)
                 .buildSessionFactory();

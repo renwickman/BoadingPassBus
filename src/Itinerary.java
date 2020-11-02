@@ -9,23 +9,18 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 public class Itinerary {
+    private Application passenger;
 
-    Path filePath = Paths.get(System.getProperty("user.dir") + "\\src\\itinerary.txt");
-
-    public void createFile() {
-        try {
-            Files.createFile(filePath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    public Itinerary(Application newApplicant){
+        this.passenger = newApplicant;
     }
+
 
     String createBoardPass(){
         Random rand = new Random();
         String pass ="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i <= 18; i++){
+        for (int i = 0; i <= 12; i++){
             int randIndex = rand.nextInt(pass.length());
                 res.append(pass.charAt(randIndex));
             }
@@ -49,21 +44,32 @@ public class Itinerary {
         }
     }
 
+    Path filePath = Paths.get(System.getProperty("user.dir") + "\\src\\itinerary.csv");
+
+    public void createFile() {
+        try {
+            Files.createFile(filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void writeToAFile() {
         try{
 //            Files.writeString(filePath, Get Today's Date);
-//            Files.writeString(filePath, Passenger.getName);
-//            Files.writeString(filePath, Passenger.getAge);
-//            Files.writeString(filePath, Passenger.getGender);
-//            Files.writeString(filePath, Passenger.getPhone);
-//            Files.writeString(filePath, Passenger.getEmail);
-//            Files.writeString(filePath, Passenger.getOrigin);
-//            Files.writeString(filePath, Passenger.getDestination);
-//            Files.writeString(filePath, Passenger.getDepartDate);
-//            Files.writeString(filePath, Passenger.getDepartTime);
-//            Files.writeString(filePath, Passenger.getTotalPrice);
-//            Files.writeString(filePath, Passenger.getEta);
+//            Files.writeString(filePath, passenger.getBoarding_pass);
+//            Files.writeString(filePath, passenger.getName);
+//            Files.writeString(filePath, passenger.getAge);
+//            Files.writeString(filePath, passenger.getGender);
+//            Files.writeString(filePath, passenger.getPhone);
+//            Files.writeString(filePath, passenger.getEmail);
+//            Files.writeString(filePath, passenger.getOrigin);
+//            Files.writeString(filePath, passenger.getDestination);
+//            Files.writeString(filePath, passenger.getDepartDate);
+//            Files.writeString(filePath, passenger.getDepartTime);
+//            Files.writeString(filePath, passenger.getEta);
+//            Files.writeString(filePath, passenger.getTotalPrice);
         } catch (Exception e) {
             e.printStackTrace();
         }

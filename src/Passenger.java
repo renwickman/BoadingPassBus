@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Passenger {
     private Application newApplicant;
     private Date date;
-    public Flight flight;
+    public Trip trip;
 
     SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
             .addAnnotatedClass(Application.class)
@@ -19,7 +19,7 @@ public class Passenger {
 
     public String enterName() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello! Welcome to Direct Airlines");
+        System.out.println("Hello! Welcome to Drive Time!");
         System.out.println("What is your name?");
         return scanner.nextLine();
     }
@@ -37,6 +37,7 @@ public class Passenger {
             factory.close();
         }
     }
+
 
     public String enterEmail(){
         Scanner scanEmail = new Scanner(System.in);
@@ -86,15 +87,16 @@ public class Passenger {
         }
     }
 
+    public Application getNewApplicant(){
+        return newApplicant;
+    }
+
     public Passenger(){
         createApplicant();
         updateInfo(newApplicant.getId());
-//        Flight flight = new Flight(newApplicant);
     }
 
-    public static void main(String[] args) {
-        new Passenger();
-    }
+   
 
 
 }
