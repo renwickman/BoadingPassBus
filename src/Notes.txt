@@ -629,3 +629,25 @@ public class Main {
             System.out.println("Date (Los Angeles) : " + format.format(laZonedDateTime));
             System.out.println("Date (New York) : " + format.format(nyDateTime));
         }
+------------------------------------------------------------------------------------------------------------------------
+        if (passenger.getOrigin() == "1") {
+            lat1 = Math.toRadians(34.05223);
+            lon1 = Math.toRadians(-118.24368);
+        } else if (passenger.getOrigin() == "2") {
+            lat1 = Math.toRadians(40.7648);
+            lon1 = Math.toRadians(-73.9808);
+        } else if (passenger.getOrigin() == "3") {
+            lat1 = Math.toRadians(42.331427);
+            lon1 = Math.toRadians(-83.045754);
+        }
+
+        if (passenger.getDestination() == "1") {
+            lat2 = Math.toRadians(34.05223);
+            lon2 = Math.toRadians(-118.24368);
+        } else if (passenger.getDestination() == "2") {
+            lat2 = Math.toRadians(40.7648);
+            lon2 = Math.toRadians(-73.9808);
+        } else if (passenger.getDestination() == "3") {
+            lat1 = Math.toRadians(42.331427);
+            lon1 = Math.toRadians(-83.045754);
+        }

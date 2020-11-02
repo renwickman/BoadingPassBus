@@ -19,6 +19,10 @@ public class Trip {
     private Application passenger;
     ZonedDateTime endDateTime;
     String strDate;
+    double lat1 = 0;
+    double lat2 = 0;
+    double lon1 = 0;
+    double lon2 = 0;
     double minutes;
     double hours;
 
@@ -42,21 +46,33 @@ public class Trip {
         switch (scanDepart.nextLine()) {
             case "1":
                 passenger.setOrigin("America/New_York");
+                lat1 = Math.toRadians(40.7648);
+                lon1 = Math.toRadians(-73.9808);
                 break;
             case "2":
                 passenger.setOrigin("America/Los_Angeles");
+                lat1 = Math.toRadians(34.05223);
+                lon1 = Math.toRadians(-118.24368);
                 break;
             case "3":
                 passenger.setOrigin("America/Detroit");
+                lat1 = Math.toRadians(42.331427);
+                lon1 = Math.toRadians(-83.045754);
                 break;
             case "4":
                 passenger.setOrigin("America/Phoenix");
+                lat1 = Math.toRadians(33.448377);
+                lon1 = Math.toRadians(-112.074037);
                 break;
             case "5":
                 passenger.setOrigin("America/Louisville");
+                lat1 = Math.toRadians(38.252665);
+                lon1 = Math.toRadians(-85.758456);
                 break;
             case "6":
                 passenger.setOrigin("America/Indiana/Indianapolis");
+                lat1 = Math.toRadians(39.76863);
+                lon1 = Math.toRadians(-86.15804);
                 break;
             default:
                 System.out.printf("%s ... you made an invalid entry", passenger.getName());
@@ -71,30 +87,42 @@ public class Trip {
         //for presentation to the user in the default locale.
         Scanner scanArrive = new Scanner(System.in);
         System.out.println("Where are you looking to go?");
-        System.out.println("1. " + "America/New_York");
-        System.out.println("2. " + "America/Los_Angeles");
-        System.out.println("3. " + "America/Detroit");
-        System.out.println("4. " + "America/Phoenix");
-        System.out.println("5. " + "America/Louisville");
-        System.out.println("6. " + "America/Indiana/Indianapolis");
+        System.out.println("1. America/New_York");
+        System.out.println("2. America/Los_Angeles");
+        System.out.println("3. America/Detroit");
+        System.out.println("4. America/Phoenix");
+        System.out.println("5. America/Louisville");
+        System.out.println("6. America/Indiana/Indianapolis");
         switch (scanArrive.nextLine()){
             case "1":
                 passenger.setDestination("America/New_York");
+                lat2 = Math.toRadians(40.7648);
+                lon2 = Math.toRadians(-73.9808);
                 break;
             case "2":
                 passenger.setDestination("America/Los_Angeles");
+                lat2 = Math.toRadians(34.05223);
+                lon2 = Math.toRadians(-118.24368);
                 break;
             case "3":
                 passenger.setDestination("America/Detroit");
+                lat2 = Math.toRadians(42.331427);
+                lon2 = Math.toRadians(-83.045754);
                 break;
             case "4":
                 passenger.setDestination("America/Phoenix");
+                lat2 = Math.toRadians(33.448377);
+                lon2 = Math.toRadians(-112.074037);
                 break;
             case "5":
                 passenger.setDestination("America/Louisville");
+                lat2 = Math.toRadians(38.252665);
+                lon2 = Math.toRadians(-85.758456);
                 break;
             case "6":
                 passenger.setDestination("America/Indiana/Indianapolis");
+                lat2 = Math.toRadians(39.76863);
+                lon2 = Math.toRadians(-86.15804);
                 break;
             default:
                 System.out.printf("%s ... you made an invalid entry", passenger.getName());
@@ -163,61 +191,16 @@ public class Trip {
         return scanDepartTime.nextLine();
     }
 
-    public void updateTrip(int appId) {
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Application.class)
-                .buildSessionFactory();
-
-        Session session = factory.getCurrentSession();
-
-        try {
-            session.beginTransaction();
-            Application currentApp = session.get(Application.class, appId);
-            currentApp.setDestination(enterArrive());
-            currentApp.setOrigin(enterDepart());
-            currentApp.setDepartDate(departDate());
-            currentApp.setDepartTime(departTime());
-            session.getTransaction().commit();
-        } finally {
-            factory.close();
-        }
-    }
-
-    public String possibleArrive() {
+    public String estTimeArrive() {
         final String DATE_FORMAT = "MM/dd/yyyy hh:mm a";
         TimeZone endZone = TimeZone.getTimeZone(enterArrive());
         ZoneId endZoneId = ZoneId.of(enterArrive());
         String leaveDateTime = passenger.getDepartTime() + " " + passenger.getDepartDate();
         LocalDateTime ldt = LocalDateTime.parse(leaveDateTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
 
-        double lat1 = 0;
-        double lat2 = 0;
-        double lon1 = 0;
-        double lon2 = 0;
+
         double earthRadius = 6371.01 * 0.621;
 
-
-        if (passenger.getOrigin() == "1") {
-            lat1 = Math.toRadians(34.05223);
-            lon1 = Math.toRadians(-118.24368);
-        } else if (passenger.getOrigin() == "2") {
-            lat1 = Math.toRadians(40.7648);
-            lon1 = Math.toRadians(-73.9808);
-        } else if (passenger.getOrigin() == "3") {
-            lat1 = Math.toRadians(42.331427);
-            lon1 = Math.toRadians(-83.045754);
-        }
-
-        if (passenger.getDestination() == "1") {
-            lat2 = Math.toRadians(34.05223);
-            lon2 = Math.toRadians(-118.24368);
-        } else if (passenger.getDestination() == "2") {
-            lat2 = Math.toRadians(40.7648);
-            lon2 = Math.toRadians(-73.9808);
-        } else if (passenger.getDestination() == "3") {
-            lat1 = Math.toRadians(42.331427);
-            lon1 = Math.toRadians(-83.045754);
-        }
 
         double distance = Math.round(earthRadius * Math.acos(Math.sin(lat1) * Math.sin(lat2)
                 + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2)));
@@ -278,7 +261,27 @@ public class Trip {
             strDate = dateFormat.format(endDateTime);
         }
 
-
         return strDate;
+    }
+
+    public void updateTrip(int appId) {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Application.class)
+                .buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+            Application currentApp = session.get(Application.class, appId);
+            currentApp.setDestination(enterArrive());
+            currentApp.setOrigin(enterDepart());
+            currentApp.setDepartDate(departDate());
+            currentApp.setDepartTime(departTime());
+            currentApp.setEta(estTimeArrive());
+            session.getTransaction().commit();
+        } finally {
+            factory.close();
+        }
     }
 }
