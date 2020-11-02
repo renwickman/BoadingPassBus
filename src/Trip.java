@@ -108,6 +108,7 @@ public class Trip {
         double lon1 = 0;
         double lon2 = 0;
         double earthRadius = 6371.01 * 0.621;
+
         if (passenger.getOrigin() == "America/Los_Angeles"){
             lat1 = Math.toRadians(34.05223);
             lon1 = Math.toRadians(-118.24368);
@@ -120,6 +121,7 @@ public class Trip {
             lat1 = Math.toRadians(42.331427);
             lon1 = Math.toRadians(-83.045754);
         }
+
         if (passenger.getDestination() == "America/Los_Angeles"){
             lat2 = Math.toRadians(34.05223);
             lon2 = Math.toRadians(-118.24368);
@@ -139,6 +141,19 @@ public class Trip {
         double distance1 = distance/50;
         double hours = Math.floor(distance1);
         double minutes = Math.ceil((distance1 - hours) * 60);
+
+        if (enterDepart().equals("America/New_york")){
+            TimeZone timezone = TimeZone.getTimeZone("America/New_york");
+            //Make String into a Date/Time
+        }
+        else if (enterDepart().equals("America/Los_angeles")){
+            TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
+            //Make String into a Date/Time
+        }
+        else if (enterDepart().equals("America/Detroit")){
+            TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
+            //Make String into a Date/Time
+        }
 
 
 //        Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
