@@ -4,19 +4,24 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class Price {
+    private Application passenger;
+
+    public Price(Application newApplicant){
+        this.passenger = newApplicant;
+    }
 
     private int priceCheck(){
-        float price = (float) 300.00;
+        float price = (float) 150.00;
 
-//        if (Passenger.getGender == F){
-//            price = price * .25;
-//        }
-//        else if (Passenger.getAge <= 12){
-//            price = price * .50;
-//        }
-//        else if (Passenger.getAge >= 60){
-//            price = price * .25;
-//        }
+        if (passenger.getGender().equals("F")){
+            price = price * .75f;
+        }
+        else if (passenger.getAge() <= 12){
+            price = price * .50f;
+        }
+        else if (passenger.getAge() >= 60){
+            price = price * .40f;
+        }
 
         return Integer.parseInt(String.valueOf(price));
     }
