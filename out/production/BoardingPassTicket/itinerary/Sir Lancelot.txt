@@ -1,0 +1,13 @@
+11/03/2020
+Boarding Pass: null
+Name: Sir Lancelot
+Age: 888
+Gender: M
+Phone Number: 1234567890
+Email: thebrave@camelot.com
+Departure City: America/New_York
+Arrival City: America/Phoenix
+Departure Date: 03/04/2020
+Departure Time: 04:00 PM
+ETA: 03/04/2020 04:00 PM
+Total Price: 0.0

@@ -73,61 +73,109 @@ public class Application {
     }
 
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) { this.email = email; }
-
-
-    public String getGender() { return gender; }
-
-    public void setGender(String gender) { this.gender = gender; }
-
-
-    public long getPhone() { return phone; }
-
-    public void setPhone(long phone) { this.phone = phone; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 
-    public String getOrigin() { return origin; }
+    public String getGender() {
+        return gender;
+    }
 
-    public void setOrigin(String origin) { this.origin = origin; }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
 
-    public String getDestination() { return destination; }
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+
+    public String getDestination() {
+        return destination;
+    }
 
     public void setDestination(String destination) {
         this.destination = destination;
     }
 
 
-    public String getDepartTime() { return depart_time; }
+    public String getDepartTime() {
+        return depart_time;
+    }
 
     public void setDepartTime(String depart_time) {
         this.depart_time = depart_time;
     }
 
 
-    public String getDepartDate() { return depart_date; }
+    public String getDepartDate() {
+        return depart_date;
+    }
 
     public void setDepartDate(String depart_date) {
         this.depart_date = depart_date;
     }
 
 
-    public String getEta() { return eta; }
+    public String getEta() {
+        return eta;
+    }
 
     public void setEta(String eta) {
         this.eta = eta;
     }
 
 
-    public String getBoarding_pass() { return boarding_pass; }
+    public String getBoarding_pass() {
+        return boarding_pass;
+    }
 
-    public void setBoarding_pass(String boarding_pass) { this.boarding_pass = boarding_pass; }
+    public void setBoarding_pass(String boarding_pass) {
+        this.boarding_pass = boarding_pass;
+    }
 
 
-    public float getTotal_price() { return total_price; }
+    public float getTotal_price() {
+        return total_price;
+    }
 
-    public void setTotal_price(float total_price) { this.total_price = total_price; }
+    public void setTotal_price(float total_price) {
+        this.total_price = total_price;
+    }
 
+    @Override
+    public String toString() {
+        return "\nBoarding Pass: " + getBoarding_pass() + "\n" +
+                "Name: " + getName() + "\n" +
+                "Age: " + getAge() + "\n" +
+                "Gender: " + getGender() + "\n" +
+                "Phone Number: " + getPhone() + "\n" +
+                "Email: " + getEmail() + "\n" +
+                "Departure City: " + getOrigin() + "\n" +
+                "Arrival City: " + getDestination() + "\n" +
+                "Departure Date: " + getDepartDate() + "\n" +
+                "Departure Time: " + getDepartTime() + "\n" +
+                "ETA: " + getEta() + "\n" +
+                "Total Price: " + getTotal_price();
+
+    }
 }

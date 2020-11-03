@@ -35,8 +35,8 @@ public class Price {
 
         try {
             session.beginTransaction();
-            Application currentApp = session.get(Application.class, appId);
-            currentApp.setTotal_price(priceCheck());
+//            Application currentApp = session.get(Application.class, appId);
+            passenger.setTotal_price(priceCheck());
             session.getTransaction().commit();
         } finally {
             factory.close();
