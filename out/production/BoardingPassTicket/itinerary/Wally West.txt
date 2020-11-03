@@ -1,0 +1,13 @@
+11/03/2020
+Boarding Pass: WO7KDIFMM2TSC
+Name: Wally West
+Age: 25
+Gender: F
+Phone Number: 9998887733
+Email: wally@gmail.com
+Departure City: null
+Arrival City: null
+Departure Date: null
+Departure Time: null
+ETA: null
+Total Price: 112.5

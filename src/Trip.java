@@ -152,13 +152,13 @@ public class Trip {
 
         try {
             session.beginTransaction();
-            //Application currentApp = session.get(Application.class, appId);
-            passenger.setOrigin(enterDepart());
-            passenger.setDestination(enterArrive());
-            passenger.setDepartDate(departDate());
-            passenger.setDepartTime(departTime());
-            passenger.setEta(estTimeArrive());
-            session.save(passenger);
+            Application currentApp = session.get(Application.class, appId);
+            currentApp.setOrigin(enterDepart());
+            currentApp.setDestination(enterArrive());
+            currentApp.setDepartDate(departDate());
+            currentApp.setDepartTime(departTime());
+            currentApp.setEta(estTimeArrive());
+            session.save(currentApp);
             session.getTransaction().commit();
         } finally {
             session.close();
