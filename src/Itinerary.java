@@ -13,10 +13,9 @@ import java.util.Random;
 public class Itinerary {
     private Application passenger;
     Path filePath;
-
     public Itinerary(Application newApplicant){
         this.passenger = newApplicant;
-        filePath = Paths.get(System.getProperty("user.dir") + "/src/itinerary" + passenger.getName() + ".txt");
+        filePath = Paths.get(System.getProperty("user.dir") + "/src/itinerary/" + passenger.getName() + ".txt");
     }
 
 
@@ -40,14 +39,16 @@ public class Itinerary {
 
         try {
             session.beginTransaction();
-            Application currentApp = session.get(Application.class, appId);
-            currentApp.setBoarding_pass(createBoardPass());
-            session.save(currentApp);
+//            Application currentApp = session.get(Application.class, appId);
+            passenger.setBoarding_pass(createBoardPass());
+            session.save(passenger);
             session.getTransaction().commit();
         } finally {
             factory.close();
         }
     }
+
+
 
 
     public void createFile() {
@@ -64,19 +65,19 @@ public class Itinerary {
         Date date = new Date();
 
         try{
-            Files.writeString(filePath, formatter.format(date));
-            Files.writeString(filePath, passenger.getBoarding_pass());
-            Files.writeString(filePath, passenger.getName());
-            Files.writeString(filePath, String.valueOf(passenger.getAge()));
-            Files.writeString(filePath, passenger.getGender());
-            Files.writeString(filePath, String.valueOf(passenger.getPhone()));
-            Files.writeString(filePath, passenger.getEmail());
-            Files.writeString(filePath, passenger.getOrigin());
-            Files.writeString(filePath, passenger.getDestination());
-            Files.writeString(filePath, passenger.getDepartDate());
-            Files.writeString(filePath, passenger.getDepartTime());
-            Files.writeString(filePath, passenger.getEta());
-            Files.writeString(filePath, String.valueOf(passenger.getTotal_price()));
+            Files.writeString(filePath, formatter.format(date) + passenger.toString());
+//            Files.writeString(filePath, String.valueOf(passenger.getBoarding_pass()));
+//            Files.writeString(filePath, passenger.getName());
+//            Files.writeString(filePath, String.valueOf(passenger.getAge()));
+//            Files.writeString(filePath, passenger.getGender());
+//            Files.writeString(filePath, String.valueOf(passenger.getPhone()));
+//            Files.writeString(filePath, passenger.getEmail());
+//            Files.writeString(filePath, passenger.getOrigin());
+//            Files.writeString(filePath, passenger.getDestination());
+//            Files.writeString(filePath, passenger.getDepartDate());
+//            Files.writeString(filePath, passenger.getDepartTime());
+//            Files.writeString(filePath, passenger.getEta());
+//            Files.writeString(filePath, String.valueOf(passenger.getTotal_price()));
         } catch (Exception e) {
             e.printStackTrace();
         }

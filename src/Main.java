@@ -2,6 +2,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+
         Passenger pass = new Passenger();
         Trip trippy = new Trip(pass.getNewApplicant());
         trippy.updateTrip(pass.getNewApplicant().getId());

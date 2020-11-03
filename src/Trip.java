@@ -66,7 +66,7 @@ public class Trip {
         System.out.println("Where are you arriving to?");
         for (Locations location: cities.getCityList()
         ) {
-            System.out.println(location.getTimeZoneString());
+            System.out.println(location.getId() + "." +location.getTimeZoneString());
         }
         try{
             arrive = cities.getCityList().get(Integer.parseInt(scanArrive.nextLine())-1);
@@ -158,7 +158,8 @@ public class Trip {
             currentApp.setDepartDate(departDate());
             currentApp.setDepartTime(departTime());
             currentApp.setEta(estTimeArrive());
-            session.save(currentApp);
+            passenger = currentApp;
+            session.save(passenger);
             session.getTransaction().commit();
         } finally {
             session.close();
