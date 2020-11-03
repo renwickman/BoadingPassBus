@@ -158,8 +158,7 @@ public class Trip {
             currentApp.setDepartDate(departDate());
             currentApp.setDepartTime(departTime());
             currentApp.setEta(estTimeArrive());
-            passenger = currentApp;
-            session.save(passenger);
+            session.save(currentApp);
             session.getTransaction().commit();
         } finally {
             session.close();

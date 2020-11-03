@@ -1,0 +1,13 @@
+11/03/2020
+Boarding Pass: BTI6HPWCUE0EI
+Name: Allen
+Age: 11
+Gender: M
+Phone Number: 9998884444
+Email: allen@gmail.com
+Departure City: null
+Arrival City: null
+Departure Date: null
+Departure Time: null
+ETA: null
+Total Price: 75.0
