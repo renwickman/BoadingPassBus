@@ -34,7 +34,6 @@ public class Passenger {
         } finally {
             session.close();
             factory.close();
-            scan.close();
         }
     }
 

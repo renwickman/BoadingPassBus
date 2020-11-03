@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f943c9f9-e6db-454b-814f-11d45bc66a1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JARS_Assignment_Resources/MySQL connector  Jar/mysql-connector-java-8.0.19.jar" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -147,9 +149,10 @@
     </state>
     <state width="1877" height="15" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1604378322385" />
     <state width="1129" height="265" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1604418180113" />
-    <state x="357" y="121" key="SettingsEditor" timestamp="1604374520319">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="333" y="144" key="SettingsEditor" timestamp="1604422291041">
+      <screen x="0" y="23" width="1792" height="1037" />
     </state>
     <state x="357" y="121" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1604374520319" />
+    <state x="333" y="144" key="SettingsEditor/0.23.1792.1037/1792.23.1366.745@0.23.1792.1037" timestamp="1604422291041" />
   </component>
 </project>
