@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f943c9f9-e6db-454b-814f-11d45bc66a1c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BoardingPassTicket/Itinerary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BoardingPassTicket/Itinerary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BoardingPassTicket/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BoardingPassTicket/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BoardingPassTicket/Trip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BoardingPassTicket/Trip.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BoardingPassTicket/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BoardingPassTicket/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Itinerary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Itinerary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trip.java" afterDir="false" />
-    </list>
+    <list default="true" id="f943c9f9-e6db-454b-814f-11d45bc66a1c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +52,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JARS_Assignment_Resources/MySQL connector  Jar/mysql-connector-java-8.0.19.jar" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -190,11 +180,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="270" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1604431833737" />
-    <state x="474" y="8" key="SettingsEditor" timestamp="1604427621888">
+    <state x="474" y="8" key="SettingsEditor" timestamp="1604435547677">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="357" y="121" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1604374520319" />
-    <state x="474" y="8" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1604427621888" />
+    <state x="474" y="8" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1604435547677" />
     <state x="332" y="83" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1604431926089">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
