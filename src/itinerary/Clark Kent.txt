@@ -1,0 +1,13 @@
+11/03/2020
+Boarding Pass: HQCQGMXHEMOT9
+Name: Clark Kent
+Age: 66
+Gender: M
+Phone Number: 9993338888
+Email: superman@gmail.com
+Departure City: null
+Arrival City: null
+Departure Date: null
+Departure Time: null
+ETA: null
+Total Price: 60.0

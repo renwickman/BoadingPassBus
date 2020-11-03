@@ -651,3 +651,149 @@ public class Main {
             lat1 = Math.toRadians(42.331427);
             lon1 = Math.toRadians(-83.045754);
         }
+----------------------------------------------------------------------------------------------------------------------
+
+        /*if (enterDepart().equals("1")) {
+            Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/New_york");
+
+            ZoneId nyZoneId = ZoneId.of("America/New_york");
+
+            ZonedDateTime nyZonedDateTime = ldt.atZone(nyZoneId);
+
+            newYorkTime.add(Calendar.HOUR, (int) hours);
+            newYorkTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
+
+            endDateTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+
+        } else if (enterDepart().equals("2")) {
+            //Calendar into Los Angeles TimeZone
+            Calendar laTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
+
+            ZoneId laZoneId = ZoneId.of("America/Los_angeles");
+
+            ZonedDateTime laZonedDateTime = ldt.atZone(laZoneId);
+
+            //Make String into a Date/Time
+            laTime.add(Calendar.HOUR, (int) hours);
+            laTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = laZonedDateTime.withZoneSameInstant(laZoneId);
+
+            endDateTime = laZonedDateTime.withZoneSameInstant(laZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        }  else if (enterDepart().equals("3")) {
+            Calendar detTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
+
+            ZoneId detZoneId = ZoneId.of("America/Detroit");
+
+            ZonedDateTime detZonedDateTime = ldt.atZone(detZoneId);
+
+            detTime.add(Calendar.HOUR, (int) hours);
+            detTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = detZonedDateTime.withZoneSameInstant(detZoneId);
+            //Make String into a Date/Time
+            endDateTime = detZonedDateTime.withZoneSameInstant(detZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("4")) {
+            Calendar phoenixTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Phoenix");
+
+            ZoneId detZoneId = ZoneId.of("America/Phoenix");
+
+            ZonedDateTime phoenixZonedDateTime = ldt.atZone(detZoneId);
+
+            phoenixTime.add(Calendar.HOUR, (int) hours);
+            phoenixTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = phoenixZonedDateTime.withZoneSameInstant(detZoneId);
+            //Make String into a Date/Time
+            endDateTime = phoenixZonedDateTime.withZoneSameInstant(detZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("5")) {
+            Calendar louTime = new GregorianCalendar(TimeZone.getTimeZone("America/Louisville"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Louisville");
+
+            ZoneId louZoneId = ZoneId.of("America/Louisville");
+
+            ZonedDateTime louZonedDateTime = ldt.atZone(louZoneId);
+
+            louTime.add(Calendar.HOUR, (int) hours);
+            louTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = louZonedDateTime.withZoneSameInstant(louZoneId);
+            //Make String into a Date/Time
+            endDateTime = louZonedDateTime.withZoneSameInstant(louZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("6")) {
+            Calendar indTime = new GregorianCalendar(TimeZone.getTimeZone("America/Indiana/Indianapolis"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Indiana/Indianapolis");
+
+            ZoneId indZoneId = ZoneId.of("America/Indiana/Indianapolis");
+
+            ZonedDateTime indZonedDateTime = ldt.atZone(indZoneId);
+
+            indTime.add(Calendar.HOUR, (int) hours);
+            indTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = indZonedDateTime.withZoneSameInstant(indZoneId);
+            //Make String into a Date/Time
+            endDateTime = indZonedDateTime.withZoneSameInstant(indZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+                    return strDate;
+        }*/
+
+                /*
+                System.out.println("Where are you looking to go?");
+                System.out.println("1. America/New_York");
+                System.out.println("2. America/Los_Angeles");
+                System.out.println("3. America/Detroit");
+                System.out.println("4. America/Phoenix");
+                System.out.println("5. America/Louisville");
+                System.out.println("6. America/Indianapolis");
+                switch (scanArrive.nextLine()){
+                    case "1":
+                        passenger.setDestination("America/New_York");
+                        lat2 = Math.toRadians(40.7648);
+                        lon2 = Math.toRadians(-73.9808);
+                        break;
+                    case "2":
+                        passenger.setDestination("America/Los_Angeles");
+                        lat2 = Math.toRadians(34.05223);
+                        lon2 = Math.toRadians(-118.24368);
+                        break;
+                    case "3":
+                        passenger.setDestination("America/Detroit");
+                        lat2 = Math.toRadians(42.331427);
+                        lon2 = Math.toRadians(-83.045754);
+                        break;
+                    case "4":
+                        passenger.setDestination("America/Phoenix");
+                        lat2 = Math.toRadians(33.448377);
+                        lon2 = Math.toRadians(-112.074037);
+                        break;
+                    case "5":
+                        passenger.setDestination("America/Louisville");
+                        lat2 = Math.toRadians(38.252665);
+                        lon2 = Math.toRadians(-85.758456);
+                        break;
+                    case "6":
+                        passenger.setDestination("America/Indiana/Indianapolis");
+                        lat2 = Math.toRadians(39.76863);
+                        lon2 = Math.toRadians(-86.15804);
+                        break;
+                    default:
+                        System.out.printf("%s ... you made an invalid entry", passenger.getName());
+                }*/
