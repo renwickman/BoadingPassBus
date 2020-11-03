@@ -50,11 +50,10 @@ public class Passenger {
     public int enterAge() {
         while (true) {
             String age = readInput("How old are you?");
-            if (age.matches("[0-9]+") && Integer.parseInt(age) < 200)
+            if (age.matches("[0-9]{1,3}+"))
                 return Integer.parseInt(age);
             System.out.println("Please enter a valid number for your age!");
         }
-
     }
 
     public String enterGender() {
