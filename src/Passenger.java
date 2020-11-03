@@ -19,6 +19,7 @@ public class Passenger {
 
     public Passenger() {
         try {
+            System.out.println("Hello! Welcome to Trip Time!");
             newApplicant = new Application();
             newApplicant.setName(enterName());
             newApplicant.setAge(enterAge());
@@ -33,79 +34,69 @@ public class Passenger {
         } finally {
             session.close();
             factory.close();
+            scan.close();
         }
     }
 
     public String enterName() {
-        System.out.println("Hello! Welcome to Trip Time!");
         while (true) {
-            try {
-                System.out.println("What is your name?");
-                return scan.nextLine();
-            } catch (Exception e) {
-                System.out.println("Invalid input. Try again.");
-            }
+            String name = readInput("What is your name?");
+            if (!name.isEmpty())
+                return name;
+            System.out.println("Please enter a valid name!");
         }
     }
 
     public int enterAge() {
-        String age = "";
         while (true) {
-            try {
-                scan.reset();
-                System.out.println("How old are you?");
-                age = scan.nextLine();
-                if (age.matches("[0-9]+") && Integer.parseInt(age) < 200)
-                    return Integer.parseInt(age);
-                throw new Exception("Please enter a valid number for your age!");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            String age = readInput("How old are you?");
+            if (age.matches("[0-9]+") && Integer.parseInt(age) < 200)
+                return Integer.parseInt(age);
+            System.out.println("Please enter a valid number for your age!");
         }
 
     }
 
     public String enterGender() {
         //Make into Boolean?
-        System.out.println("What is your gender");
-        System.out.println("Enter M for Male");
-        System.out.println("Enter F for Female");
-        return scan.nextLine();
+        while (true) {
+            String gender = readInput("What is your Gender?\n M for male\n F for female");
+            if(gender.toLowerCase().matches("[FMfm]"))
+                return gender;
+            System.out.println("Please enter M for male or F for female");
+        }
     }
 
     public long enterPhone() {
-        String phoneNumber = "";
         while (true) {
-            try {
-                scan.reset();
-                System.out.println("In case of emergency, what is your phone number?");
-                phoneNumber = scan.nextLine();
-                if (phoneNumber.matches("[0-9]{10}+"))
-                    return Long.parseLong(phoneNumber);
-                throw new Exception("Please enter a valid phone number");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            String phoneNumber = readInput("In case of emergency, what is your phone number?");
+            if (phoneNumber.matches("[0-9]{10}+"))
+                return Long.parseLong(phoneNumber);
+            System.out.println("Please enter a valid phone number");
         }
-
     }
 
     public String enterEmail() {
-        String email = "";
         while (true) {
-            scan.reset();
-            System.out.println("What is your email?");
-            email = scan.nextLine();
+            String email = readInput("What is your email?");
             if (email.matches("^[A-Za-z0-9+_.-]+@(.+)$"))
                 return email;
             System.out.println("Email address invalid format. Try again...");
         }
-
     }
-
 
     public Application getNewApplicant() {
         return newApplicant;
     }
 
+    public String readInput(String message) {
+        try {
+            System.out.println(message);
+            scan.reset();
+            return scan.nextLine();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "";
+        }
+    }
 }
