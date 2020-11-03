@@ -45,11 +45,7 @@ public class Trip {
       }
 
       try{
-
-          depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())+1);
-=======
           depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())-1);
->>>>>>> Stashed changes
       } catch(Exception e){
           System.out.println(e.getMessage());
       }
