@@ -61,7 +61,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Hibernate/Hibernate/JARS/MySQL connector  Jar/mysql-connector-java-8.0.19.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JARS_Assignment_Resources/MySQL connector  Jar/mysql-connector-java-8.0.19.jar" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -133,8 +133,8 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="586" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1920.0.1920.1040/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1604334563878" />
-    <state x="740" y="303" key="FileChooserDialogImpl" timestamp="1604348105462">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="617" y="251" key="FileChooserDialogImpl" timestamp="1604415557840">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="740" y="303" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1604348105462" />
     <state width="1877" height="15" key="GridCell.Tab.0.bottom" timestamp="1604378322385">

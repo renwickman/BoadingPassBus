@@ -115,7 +115,7 @@ public class Trip {
         System.out.println("3. America/Detroit");
         System.out.println("4. America/Phoenix");
         System.out.println("5. America/Louisville");
-        System.out.println("6. America/Indiana/Indianapolis");
+        System.out.println("6. America/Indianapolis");
         switch (scanArrive.nextLine()){
             case "1":
                 passenger.setDestination("America/New_York");
@@ -248,7 +248,7 @@ public class Trip {
         return dateFormat.format(endDateTime);
         /*if (enterDepart().equals("1")) {
             Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
-            TimeZone timezone = TimeZone.getTimeZone("America/New_york");
+//            TimeZone timezone = TimeZone.getTimeZone("America/New_york");
 
             ZoneId nyZoneId = ZoneId.of("America/New_york");
 
@@ -266,7 +266,7 @@ public class Trip {
         } else if (enterDepart().equals("2")) {
             //Calendar into Los Angeles TimeZone
             Calendar laTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
-            TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
+//            TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
 
             ZoneId laZoneId = ZoneId.of("America/Los_angeles");
 
@@ -283,7 +283,7 @@ public class Trip {
             strDate = dateFormat.format(endDateTime);
         }  else if (enterDepart().equals("3")) {
             Calendar detTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
-            TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
+//            TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
 
             ZoneId detZoneId = ZoneId.of("America/Detroit");
 
@@ -299,7 +299,7 @@ public class Trip {
             strDate = dateFormat.format(endDateTime);
         } else if (enterDepart().equals("4")) {
             Calendar phoenixTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
-            TimeZone timezone = TimeZone.getTimeZone("America/Phoenix");
+//            TimeZone timezone = TimeZone.getTimeZone("America/Phoenix");
 
             ZoneId detZoneId = ZoneId.of("America/Phoenix");
 
@@ -315,7 +315,7 @@ public class Trip {
             strDate = dateFormat.format(endDateTime);
         } else if (enterDepart().equals("5")) {
             Calendar louTime = new GregorianCalendar(TimeZone.getTimeZone("America/Louisville"));
-            TimeZone timezone = TimeZone.getTimeZone("America/Louisville");
+//            TimeZone timezone = TimeZone.getTimeZone("America/Louisville");
 
             ZoneId louZoneId = ZoneId.of("America/Louisville");
 
@@ -331,7 +331,7 @@ public class Trip {
             strDate = dateFormat.format(endDateTime);
         } else if (enterDepart().equals("6")) {
             Calendar indTime = new GregorianCalendar(TimeZone.getTimeZone("America/Indiana/Indianapolis"));
-            TimeZone timezone = TimeZone.getTimeZone("America/Indiana/Indianapolis");
+//            TimeZone timezone = TimeZone.getTimeZone("America/Indiana/Indianapolis");
 
             ZoneId indZoneId = ZoneId.of("America/Indiana/Indianapolis");
 
