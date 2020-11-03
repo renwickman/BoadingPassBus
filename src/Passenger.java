@@ -13,11 +13,11 @@ public class Passenger {
     SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
             .addAnnotatedClass(Application.class)
             .buildSessionFactory();
-
     Session session = factory.getCurrentSession();
+    Scanner scan = new Scanner(System.in);
 
 
-    public Passenger(){
+    public Passenger() {
         try {
             newApplicant = new Application();
             newApplicant.setName(enterName());
@@ -29,7 +29,7 @@ public class Passenger {
             session.save(newApplicant);
             session.getTransaction().commit();
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         } finally {
             session.close();
             factory.close();
@@ -37,41 +37,74 @@ public class Passenger {
     }
 
     public String enterName() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello! Welcome to Drive Time!");
-        System.out.println("What is your name?");
-        return scanner.nextLine();
+        System.out.println("Hello! Welcome to Trip Time!");
+        while (true) {
+            try {
+                System.out.println("What is your name?");
+                return scan.nextLine();
+            } catch (Exception e) {
+                System.out.println("Invalid input. Try again.");
+            }
+        }
     }
 
-    public String enterEmail(){
-        Scanner scanEmail = new Scanner(System.in);
-        System.out.println("What is your email?");
-        return scanEmail.nextLine();
+    public int enterAge() {
+        String age = "";
+        while (true) {
+            try {
+                scan.reset();
+                System.out.println("How old are you?");
+                age = scan.nextLine();
+                if (age.matches("[0-9]+") && Integer.parseInt(age) < 200)
+                    return Integer.parseInt(age);
+                throw new Exception("Please enter a valid number for your age!");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
-    public int enterAge(){
-        Scanner scanAge = new Scanner(System.in);
-        System.out.println("How old are you?");
-        return scanAge.nextInt();
-    }
-
-    public String enterGender(){
+    public String enterGender() {
         //Make into Boolean?
-        Scanner scanGender = new Scanner(System.in);
         System.out.println("What is your gender");
         System.out.println("Enter M for Male");
         System.out.println("Enter F for Female");
-        return scanGender.next();
+        return scan.nextLine();
     }
 
-    public int enterPhone(){
-        Scanner scanPhone = new Scanner(System.in);
-        System.out.println("In case of emergency, what is your phone number?");
-        System.out.println("Correct format: '0123456789'");
-        return scanPhone.nextInt();
+    public long enterPhone() {
+        String phoneNumber = "";
+        while (true) {
+            try {
+                scan.reset();
+                System.out.println("In case of emergency, what is your phone number?");
+                phoneNumber = scan.nextLine();
+                if (phoneNumber.matches("[0-9]{10}+"))
+                    return Long.parseLong(phoneNumber);
+                throw new Exception("Please enter a valid phone number");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
-    public Application getNewApplicant(){
+    public String enterEmail() {
+        String email = "";
+        while (true) {
+            scan.reset();
+            System.out.println("What is your email?");
+            email = scan.nextLine();
+            if (email.matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+                return email;
+            System.out.println("Email address invalid format. Try again...");
+        }
+
+    }
+
+
+    public Application getNewApplicant() {
         return newApplicant;
     }
 
