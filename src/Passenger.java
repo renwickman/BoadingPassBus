@@ -59,7 +59,7 @@ public class Passenger {
     public String enterGender() {
         //Make into Boolean?
         while (true) {
-            String gender = readInput("What is your Gender?\n M for male\n F for female");
+            String gender = readInput("What is your Gender?\nM) for male\nF) for female");
             if(gender.toLowerCase().matches("[FMfm]"))
                 return gender;
             System.out.println("Please enter M for male or F for female");
