@@ -12,9 +12,11 @@ import java.util.Random;
 
 public class Itinerary {
     private Application passenger;
+    Path filePath;
 
     public Itinerary(Application newApplicant){
         this.passenger = newApplicant;
+        filePath = Paths.get(System.getProperty("user.dir") + "/src/itinerary" + passenger.getName() + ".txt");
     }
 
 
@@ -47,7 +49,6 @@ public class Itinerary {
         }
     }
 
-    Path filePath = Paths.get(System.getProperty("user.dir") + "/src/itinerary.txt");
 
     public void createFile() {
         try {
