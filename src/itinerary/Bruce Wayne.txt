@@ -1,0 +1,13 @@
+11/03/2020
+Boarding Pass: 5J76VMA4FBB78
+Name: Bruce Wayne
+Age: 12
+Gender: F
+Phone Number: 6667778888
+Email: georgia@gmail.com
+Departure City: America/New_York
+Arrival City: America/Los_Angeles
+Departure Date: 12/20/2020
+Departure Time: 06:00 PM
+ETA: 12/20/2020 06:00 PM
+Total Price: 112.5
