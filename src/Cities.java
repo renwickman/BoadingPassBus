@@ -13,6 +13,7 @@ public class Cities {
         cityList.add(new Locations(6, "America", "Indiana", "Indianapolis", 39.76863, -86.15804));
     }
     public List<Locations> getCityList() {
+
         return cityList;
     }
 

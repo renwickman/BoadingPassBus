@@ -45,8 +45,7 @@ public class Trip {
       }
 
       try{
-
-          depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())+1);
+          depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())-1);
       } catch(Exception e){
           System.out.println(e.getMessage());
       }
@@ -102,12 +101,13 @@ public class Trip {
         //String getDisplayName()	is used to return a name of this time zone suitable
         //for presentation to the user in the default locale.
         Scanner scanArrive = new Scanner(System.in);
+        System.out.println("Where are you arriving to?");
         for (Locations location: cities.getCityList()
         ) {
             System.out.println(location.getTimeZoneString());
         }
         try{
-            arrive = cities.getCityList().get(Integer.parseInt(scanArrive.nextLine()));
+            arrive = cities.getCityList().get(Integer.parseInt(scanArrive.nextLine())-1);
         } catch(Exception e){
 
         /*
@@ -157,8 +157,7 @@ public class Trip {
         return arrive.getTimeZoneString();}
 
     public String departDate(){
-        //void setID(String ID) is used to set the time zone ID
-        //boolean before(Date date) tests if current date is before the given date.
+        //regex for correct format
         //boolean after(Date date) tests if current date is after the given date.
         Scanner scanDepartDate = new Scanner(System.in);
         System.out.println("When do you want to leave?");
@@ -173,6 +172,7 @@ public class Trip {
         //String getID() is used to get the ID of this time zone
         Scanner scanDepartTime = new Scanner(System.in);
         System.out.println("What time do you want to leave? (Select a number to choose a time)");
+
         System.out.println("1: 6:00 am");
         System.out.println("2: 8:00 am");
         System.out.println("3: 10:00 am");
