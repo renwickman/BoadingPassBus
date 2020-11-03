@@ -4,11 +4,6 @@ public class Main {
 
         Passenger pass = new Passenger();
         Trip trippy = new Trip(pass.getNewApplicant());
-        trippy.enterDepart();
-        trippy.enterArrive();
-        trippy.departDate();
-        trippy.departTime();
-        trippy.estTimeArrive();
         trippy.updateTrip(pass.getNewApplicant().getId());
     }
 }
