@@ -559,7 +559,7 @@ public class Main {
     US/Alaska (UTC-08:00)
     US/Hawaii (UTC-10:00)
     -------------------------------------------------------------------------------------------
-     String dateInString = "11-01-2020 05:01 PM";
+            String dateInString = "11-01-2020 05:01 PM";
             LocalDateTime ldt = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern(DATE_FORMAT));
 
             ZoneId chicagoZoneId = ZoneId.of("America/Chicago");
@@ -602,3 +602,52 @@ public class Main {
         DateTimeFormatter is a Formatter for displaying and parsing date-time objects
 
     -------------------------------------------------------------------------------------------
+    private static final String DATE_FORMAT = "MM-dd-yyyy hh:mm a";
+
+        public static void main(String[] args)  throws ParseException {
+
+            String dateInString = "01-22-2020 06:00 PM";
+            LocalDateTime ldt = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern(DATE_FORMAT));
+
+            ZoneId losAngelesZoneId = ZoneId.of("America/Los_Angeles");
+            System.out.println("TimeZone : " + losAngelesZoneId);
+
+            //LocalDateTime + ZoneId = ZonedDateTime
+            ZonedDateTime laZonedDateTime = ldt.atZone(losAngelesZoneId);
+            System.out.println("Date (Los Angeles) : " + laZonedDateTime);
+
+
+            //ZoneId for New_York
+            ZoneId newYokZoneId = ZoneId.of("America/New_York");
+            System.out.println("TimeZone : " + newYokZoneId);
+
+            ZonedDateTime nyDateTime = laZonedDateTime.withZoneSameInstant(newYokZoneId);
+            System.out.println("Date (New York) : " + nyDateTime);
+
+            DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            System.out.println("\n---DateTimeFormatter---");
+            System.out.println("Date (Los Angeles) : " + format.format(laZonedDateTime));
+            System.out.println("Date (New York) : " + format.format(nyDateTime));
+        }
+------------------------------------------------------------------------------------------------------------------------
+        if (passenger.getOrigin() == "1") {
+            lat1 = Math.toRadians(34.05223);
+            lon1 = Math.toRadians(-118.24368);
+        } else if (passenger.getOrigin() == "2") {
+            lat1 = Math.toRadians(40.7648);
+            lon1 = Math.toRadians(-73.9808);
+        } else if (passenger.getOrigin() == "3") {
+            lat1 = Math.toRadians(42.331427);
+            lon1 = Math.toRadians(-83.045754);
+        }
+
+        if (passenger.getDestination() == "1") {
+            lat2 = Math.toRadians(34.05223);
+            lon2 = Math.toRadians(-118.24368);
+        } else if (passenger.getDestination() == "2") {
+            lat2 = Math.toRadians(40.7648);
+            lon2 = Math.toRadians(-73.9808);
+        } else if (passenger.getDestination() == "3") {
+            lat1 = Math.toRadians(42.331427);
+            lon1 = Math.toRadians(-83.045754);
+        }
