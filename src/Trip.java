@@ -2,17 +2,16 @@ import entity.Application;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.type.descriptor.java.TimeZoneTypeDescriptor;
 
+import javax.xml.stream.Location;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Scanner;
-import java.util.TimeZone;
+import java.util.*;
 
 
 public class Trip {
@@ -26,22 +25,39 @@ public class Trip {
     double distance;
     double minutes;
     double hours;
+    Cities cities;
+    Locations depart;
+    Locations arrive;
 
     public Trip(Application newApplicant) {
         this.passenger = newApplicant;
+        cities = new Cities();
     }
 
-    public String enterDepart() {
+  public String enterDepart() {
+
         Scanner scanDepart = new Scanner(System.in);
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
         System.out.println("Where are you departing from?");
+      for (Locations location: cities.getCityList()
+           ) {
+          System.out.println(location.getId() + "." +location.getTimeZoneString());
+      }
+      try{
+          depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())+1);
+      } catch(Exception e){
+          System.out.println(e.getMessage());
+      }
+      return depart.getTimeZoneString();
+
+      /*
         System.out.println("1. America/New_York");
         System.out.println("2. America/Los_Angeles");
         System.out.println("3. America/Detroit");
         System.out.println("4. America/Phoenix");
         System.out.println("5. America/Louisville");
-        System.out.println("6. America/Indiana/Indianapolis");
-        switch (scanDepart.nextLine()) {
+        System.out.println("6. America/Indiana/Indianapolis");*/
+/*        switch (scanDepart.nextLine()) {
             case "1":
                 passenger.setOrigin("America/New_York");
                 lat1 = Math.toRadians(40.7648);
@@ -74,9 +90,9 @@ public class Trip {
                 break;
             default:
                 System.out.printf("%s ... you made an invalid entry", passenger.getName());
-        }
+        }*/
         //Exceptions or Switch Stmt to make sure they enter the right number.
-        return scanDepart.nextLine();
+        //return scanDepart.nextLine();
     }
 
     public String enterArrive() {
@@ -84,6 +100,15 @@ public class Trip {
         //String getDisplayName()	is used to return a name of this time zone suitable
         //for presentation to the user in the default locale.
         Scanner scanArrive = new Scanner(System.in);
+        for (Locations location: cities.getCityList()
+        ) {
+            System.out.println(location.getTimeZoneString());
+        }
+        try{
+            arrive = cities.getCityList().get(Integer.parseInt(scanArrive.nextLine()));
+        } catch(Exception e){
+
+        /*
         System.out.println("Where are you looking to go?");
         System.out.println("1. America/New_York");
         System.out.println("2. America/Los_Angeles");
@@ -124,12 +149,12 @@ public class Trip {
                 break;
             default:
                 System.out.printf("%s ... you made an invalid entry", passenger.getName());
-        }
+        }*/
 
-        return scanArrive.nextLine();
     }
+        return arrive.getTimeZoneString();}
 
-    public String departDate() {
+    public String departDate(){
         //void setID(String ID) is used to set the time zone ID
         //boolean before(Date date) tests if current date is before the given date.
         //boolean after(Date date) tests if current date is after the given date.
@@ -140,7 +165,8 @@ public class Trip {
     }
 
     public String departTime() {
-        //Place into Map? It will have a key.
+
+        //Place into Map or class. It will have a key.
         //void setID(String ID) is used to set the time zone ID
         //String getID() is used to get the ID of this time zone
         Scanner scanDepartTime = new Scanner(System.in);
@@ -191,23 +217,36 @@ public class Trip {
 
     public String estTimeArrive() {
         final String DATE_FORMAT = "MM/dd/yyyy hh:mm a";
-        TimeZone endZone = TimeZone.getTimeZone(enterArrive());
-        ZoneId endZoneId = ZoneId.of(enterArrive());
+/*            TimeZone endZone = TimeZone.getTimeZone(enterArrive());
+            ZoneId endZoneId = ZoneId.of(enterArrive());*/
+
         String leaveDateTime = passenger.getDepartTime() + " " + passenger.getDepartDate();
         LocalDateTime ldt = LocalDateTime.parse(leaveDateTime, DateTimeFormatter.ofPattern(DATE_FORMAT));
 
-
         double earthRadius = 6371.01 * 0.621;
 
-
-        distance = Math.round(earthRadius * Math.acos(Math.sin(lat1) * Math.sin(lat2)
-                + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2)));
+        distance = Math.round(earthRadius * Math.acos(Math.sin(depart.getLat()) * Math.sin(arrive.getLat())
+                + Math.cos(depart.getLat()) * Math.cos(arrive.getLat()) * Math.cos(depart.getLon() - arrive.getLon())));
 
         double distance1 = distance / 50;
         hours = Math.floor(distance1);
         minutes = Math.ceil((distance1 - hours) * 60);
+        Calendar endTime = new GregorianCalendar(TimeZone.getTimeZone(arrive.getTimeZoneString()));
+        //TimeZone timezone = TimeZone.getTimeZone("America/New_york");
 
-        if (enterDepart().equals("1")) {
+        ZoneId zoneId = ZoneId.of(arrive.getTimeZoneString());
+
+        ZonedDateTime dateTime = ldt.atZone(zoneId);
+
+        endTime.add(Calendar.HOUR, (int) hours);
+        endTime.add(Calendar.MINUTE, (int) minutes);
+
+        //ZonedDateTime endZoneTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
+
+        endDateTime = dateTime.withZoneSameInstant(zoneId);
+        DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+        return dateFormat.format(endDateTime);
+        /*if (enterDepart().equals("1")) {
             Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
             TimeZone timezone = TimeZone.getTimeZone("America/New_york");
 
@@ -306,9 +345,8 @@ public class Trip {
             endDateTime = indZonedDateTime.withZoneSameInstant(indZoneId);
             DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
             strDate = dateFormat.format(endDateTime);
-        }
-
-        return strDate;
+                    return strDate;
+        }*/
     }
 
     public void updateTrip(int appId) {

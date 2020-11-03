@@ -16,7 +16,7 @@ public class Main {
         itin.createBoardPass();
         itin.generatePass(pass.getNewApplicant().getId());
         itin.createFile();
-        itin.writeToAFile();
+        itin.writeToAFile();*/
 
     }
 
