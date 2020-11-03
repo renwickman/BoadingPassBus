@@ -62,18 +62,18 @@ public class Itinerary {
         Date date = new Date();
 
         try{
-            Files.writeString(filePath, formatter.format(date));
-            Files.writeString(filePath, passenger.getBoarding_pass());
-            Files.writeString(filePath, passenger.getName());
+//            Files.writeString(filePath, formatter.format(date));
+//            Files.writeString(filePath, passenger.getBoarding_pass());
+//            Files.writeString(filePath, passenger.getName());
 //            Files.writeString(filePath, passenger.getAge());
-            Files.writeString(filePath, passenger.getGender());
+//            Files.writeString(filePath, passenger.getGender());
 //            Files.writeString(filePath, passenger.getPhone());
-            Files.writeString(filePath, passenger.getEmail());
-            Files.writeString(filePath, passenger.getOrigin());
-            Files.writeString(filePath, passenger.getDestination());
-            Files.writeString(filePath, passenger.getDepartDate());
-            Files.writeString(filePath, passenger.getDepartTime());
-            Files.writeString(filePath, passenger.getEta());
+//            Files.writeString(filePath, passenger.getEmail());
+//            Files.writeString(filePath, passenger.getOrigin());
+//            Files.writeString(filePath, passenger.getDestination());
+//            Files.writeString(filePath, passenger.getDepartDate());
+//            Files.writeString(filePath, passenger.getDepartTime());
+//            Files.writeString(filePath, passenger.getEta());
 //            Files.writeString(filePath, passenger.getTotal_price());
         } catch (Exception e) {
             e.printStackTrace();

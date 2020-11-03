@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 
 @Entity
-
+@Table
 public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Application {
     private String email;
 
     @Column(name = "phone")
-    private int phone;
+    private long phone;
 
     @Column(name = "age")
     private int age;
@@ -83,9 +83,9 @@ public class Application {
     public void setGender(String gender) { this.gender = gender; }
 
 
-    public int getPhone() { return phone; }
+    public long getPhone() { return phone; }
 
-    public void setPhone(int phone) { this.phone = phone; }
+    public void setPhone(long phone) { this.phone = phone; }
 
 
     public String getOrigin() { return origin; }
