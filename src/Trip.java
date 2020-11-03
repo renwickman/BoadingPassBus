@@ -46,7 +46,7 @@ public class Trip {
 
       try{
 
-          depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())+1);
+          depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())-1);
       } catch(Exception e){
           System.out.println(e.getMessage());
       }
@@ -107,7 +107,7 @@ public class Trip {
             System.out.println(location.getTimeZoneString());
         }
         try{
-            arrive = cities.getCityList().get(Integer.parseInt(scanArrive.nextLine()));
+            arrive = cities.getCityList().get(Integer.parseInt(scanArrive.nextLine())-1);
         } catch(Exception e){
 
         /*
