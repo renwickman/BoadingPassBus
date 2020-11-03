@@ -17,10 +17,6 @@ import java.util.*;
 public class Trip {
     private Application passenger;
     ZonedDateTime endDateTime;
-    double lat1 = 0;
-    double lat2 = 0;
-    double lon1 = 0;
-    double lon2 = 0;
     double distance;
     double minutes;
     double hours;
