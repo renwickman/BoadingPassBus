@@ -8,6 +8,7 @@ public class Price {
 
     public Price(Application newApplicant){
         this.passenger = newApplicant;
+        priceUpdate();
     }
 
     private float priceCheck(){
@@ -22,21 +23,18 @@ public class Price {
         else if (passenger.getAge() >= 60){
             price = price * .40f;
         }
-
         return price;
     }
 
-    void priceUpdate(int appId){
+    void priceUpdate(){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Application.class)
                 .buildSessionFactory();
-
         Session session = factory.getCurrentSession();
-
         try {
             session.beginTransaction();
-//            Application currentApp = session.get(Application.class, appId);
             passenger.setTotal_price(priceCheck());
+            session.update(passenger);
             session.getTransaction().commit();
         } finally {
             factory.close();

@@ -41,24 +41,45 @@ public class Trip {
         times.add("06:00 PM");
         times.add("08:00 PM");
         times.add("10:00 PM");
+        updateTrip();
+    }
+    public void updateTrip() {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Application.class)
+                .buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+            passenger.setOrigin(enterDepart());
+            passenger.setDestination(enterArrive());
+            passenger.setDepartDate(departDate());
+            passenger.setDepartTime(departTime());
+            passenger.setEta(estTimeArrive());
+            session.update(passenger);
+            session.getTransaction().commit();
+        } finally {
+            session.close();
+            factory.close();
+        }
     }
 
-  public String enterDepart() {
+    public String enterDepart() {
 
         Scanner scanDepart = new Scanner(System.in);
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
         System.out.println("Where are you departing from?");
-      for (Locations location: cities.getCityList()
-           ) {
-          System.out.println(location.getId() + "." +location.getTimeZoneString());
-      }
-
-      try{
-          depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())-1);
-      } catch(Exception e){
-          System.out.println(e.getMessage());
-      }
-      return depart.getTimeZoneString();
+        for (Locations location: cities.getCityList()
+        ) {
+            System.out.println(location.getId() + "." +location.getTimeZoneString());
+        }
+        try{
+            depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())-1);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return depart.getTimeZoneString();
     }
 
     public String enterArrive() {
@@ -97,7 +118,7 @@ public class Trip {
             Scanner scanDepartTime = new Scanner(System.in);
             System.out.println("What time do you want to leave? (Select a number to choose a time)");
             for (String leaveTime : times) {
-                System.out.println(count + " : " + leaveTime);
+                System.out.println(count + ". " + leaveTime);
                 count++;
             }
             try {
@@ -133,7 +154,6 @@ public class Trip {
         endTime.add(Calendar.HOUR, (int) hours);
         endTime.add(Calendar.MINUTE, (int) minutes);
 
-
         endDateTime = dateTime.withZoneSameInstant(zoneId);
         System.out.println(endDateTime);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(DATE_FORMAT);
@@ -143,26 +163,5 @@ public class Trip {
 
     }
 
-    public void updateTrip(int appId) {
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Application.class)
-                .buildSessionFactory();
 
-        Session session = factory.getCurrentSession();
-
-        try {
-            session.beginTransaction();
-            Application currentApp = session.get(Application.class, appId);
-            currentApp.setOrigin(enterDepart());
-            currentApp.setDestination(enterArrive());
-            currentApp.setDepartDate(departDate());
-            currentApp.setDepartTime(departTime());
-            currentApp.setEta(estTimeArrive());
-            session.save(currentApp);
-            session.getTransaction().commit();
-        } finally {
-            session.close();
-            factory.close();
-        }
-    }
 }
