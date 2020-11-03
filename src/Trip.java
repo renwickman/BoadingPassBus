@@ -43,7 +43,9 @@ public class Trip {
            ) {
           System.out.println(location.getId() + "." +location.getTimeZoneString());
       }
+
       try{
+
           depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())+1);
       } catch(Exception e){
           System.out.println(e.getMessage());
