@@ -17,7 +17,6 @@ import java.util.*;
 public class Trip {
     private Application passenger;
     ZonedDateTime endDateTime;
-    String strDate;
     double lat1 = 0;
     double lat2 = 0;
     double lon1 = 0;
@@ -31,19 +30,20 @@ public class Trip {
     ArrayList<String> times;
     String departTime;
     String departDate;
+    String arriveTime;
 
     public Trip(Application newApplicant) {
         this.passenger = newApplicant;
         cities = new Cities();
         times = new ArrayList<>();
-        times.add("6:00 AM");
-        times.add("8:00 AM");
+        times.add("06:00 AM");
+        times.add("08:00 AM");
         times.add("10:00 AM");
         times.add("12:00 PM");
-        times.add("2:00 PM");
-        times.add("4:00 PM");
-        times.add("6:00 PM");
-        times.add("8:00 PM");
+        times.add("02:00 PM");
+        times.add("04:00 PM");
+        times.add("06:00 PM");
+        times.add("08:00 PM");
         times.add("10:00 PM");
     }
 
@@ -133,13 +133,17 @@ public class Trip {
 
         ZonedDateTime dateTime = ldt.atZone(zoneId);
 
+        //condition to add day
         endTime.add(Calendar.HOUR, (int) hours);
         endTime.add(Calendar.MINUTE, (int) minutes);
 
 
         endDateTime = dateTime.withZoneSameInstant(zoneId);
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
-        return dateFormat.format(endDateTime);
+        System.out.println(endDateTime);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        arriveTime = dateFormat.format(endDateTime);
+        System.out.println(arriveTime);
+        return arriveTime;
 
     }
 
@@ -153,13 +157,15 @@ public class Trip {
         try {
             session.beginTransaction();
             Application currentApp = session.get(Application.class, appId);
-            currentApp.setDestination(enterArrive());
             currentApp.setOrigin(enterDepart());
+            currentApp.setDestination(enterArrive());
             currentApp.setDepartDate(departDate());
             currentApp.setDepartTime(departTime());
             currentApp.setEta(estTimeArrive());
+            session.save(currentApp);
             session.getTransaction().commit();
         } finally {
+            session.close();
             factory.close();
         }
     }
