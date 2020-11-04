@@ -16,7 +16,6 @@ import java.util.*;
 
 public class Trip {
     private Application passenger;
-    ZonedDateTime endDateTime;
     double distance;
     double minutes;
     double hours;
@@ -147,20 +146,20 @@ public class Trip {
         double distance1 = distance / 50;
         hours = Math.floor(distance1);
         minutes = Math.ceil((distance1 - hours) * 60);
-        Calendar endTime = new GregorianCalendar(TimeZone.getTimeZone(arrive.getTimeZoneString()));
 
-        ZoneId zoneId = ZoneId.of(arrive.getTimeZoneString());
+        LocalDateTime ldt2 = ldt.plusHours((long) hours).plusMinutes((long) minutes);
 
-        ZonedDateTime dateTime = ldt.atZone(zoneId);
+
+        ZoneId fromId = ZoneId.of(depart.getTimeZoneString());
+        ZoneId toId = ZoneId.of(arrive.getTimeZoneString());
+
+        ZonedDateTime currentTime = ldt2.atZone(fromId);
+
+        ZonedDateTime newTime = currentTime.withZoneSameInstant(toId);
 
         //condition to add day
-        endTime.add(Calendar.HOUR, (int) hours);
-        endTime.add(Calendar.MINUTE, (int) minutes);
-
-        endDateTime = dateTime.withZoneSameInstant(zoneId);
-        System.out.println(endDateTime);
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        arriveTime = dateFormat.format(endDateTime);
+        DateTimeFormatter dateFormat2 = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        arriveTime = dateFormat2.format(newTime);
         System.out.println(arriveTime);
         return arriveTime;
 
