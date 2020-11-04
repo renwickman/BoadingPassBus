@@ -3,7 +3,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.type.descriptor.java.TimeZoneTypeDescriptor;
-
 import javax.xml.stream.Location;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -71,16 +70,25 @@ public class Trip {
         depart = getLocation("Where are you departing from?");
         return depart.getTimeZoneString();
     }
+
     public String enterArrive() {
-        arrive = getLocation("Where are you arriving to?");
+        while(true) {
+            arrive = getLocation("Where are you arriving to?");
+            //could also make changes in cities class to remove depart location from list.
+            if (!arrive.equals(depart))
+                break;
+            System.out.println("You cannot arrive where you've departed!");
+        }
+
         return arrive.getTimeZoneString();
     }
 
-    public Locations getLocation(String message){
+    public Locations getLocation(String message) {
         Scanner scan = new Scanner(System.in);
         System.out.println(message);
         System.out.println(cities.toString());
         while (true) {
+            scan.reset();
             try {
                 return cities.getCityList().get(Integer.parseInt(scan.nextLine()) - 1);
             } catch (Exception e) {

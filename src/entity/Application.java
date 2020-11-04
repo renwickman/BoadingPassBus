@@ -175,7 +175,7 @@ public class Application {
                 "Departure Date: " + getDepartDate() + "\n" +
                 "Departure Time: " + getDepartTime() + "\n" +
                 "ETA: " + getEta() + "\n" +
-                "Total Price: " + getTotal_price();
+                "Total Price: $" + String.format("%.2f",getTotal_price());
 
     }
 }
