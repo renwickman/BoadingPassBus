@@ -43,6 +43,7 @@ public class Trip {
         times.add("10:00 PM");
         updateTrip();
     }
+
     public void updateTrip() {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Application.class)
@@ -66,38 +67,31 @@ public class Trip {
     }
 
     public String enterDepart() {
-
         Scanner scanDepart = new Scanner(System.in);
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
-        System.out.println("Where are you departing from?");
-        for (Locations location: cities.getCityList()
-        ) {
-            System.out.println(location.getId() + "." +location.getTimeZoneString());
-        }
-        try{
-            depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())-1);
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        depart = getLocation("Where are you departing from?");
         return depart.getTimeZoneString();
     }
-
     public String enterArrive() {
         Scanner scanArrive = new Scanner(System.in);
-        System.out.println("Where are you arriving to?");
-        for (Locations location: cities.getCityList()
-        ) {
-            System.out.println(location.getId() + "." +location.getTimeZoneString());
-        }
-        try{
-            arrive = cities.getCityList().get(Integer.parseInt(scanArrive.nextLine())-1);
-        } catch(Exception e){
-
-        }
+        arrive = getLocation("Where are you arriving to?");
         return arrive.getTimeZoneString();
     }
 
-    public String departDate(){
+    public Locations getLocation(String message){
+        Scanner scan = new Scanner(System.in);
+        System.out.println(message);
+        System.out.println(cities.toString());
+        while (true) {
+            try {
+                return cities.getCityList().get(Integer.parseInt(scan.nextLine()) - 1);
+            } catch (Exception e) {
+                System.out.println("please enter a valid choice!");
+            }
+        }
+    }
+
+    public String departDate() {
         while (true) {
             Scanner scanDepartDate = new Scanner(System.in);
             System.out.println("When do you want to leave?");
