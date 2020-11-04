@@ -77,11 +77,9 @@ public class Trip {
             arrive = getLocation("Where are you arriving to?");
             //could also make changes in cities class to remove depart location from list.
             if (!arrive.equals(depart))
-                break;
+                return arrive.getTimeZoneString();
             System.out.println("You cannot arrive where you've departed!");
         }
-
-        return arrive.getTimeZoneString();
     }
 
     public Locations getLocation(String message) {
