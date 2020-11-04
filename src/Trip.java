@@ -1,4 +1,5 @@
 import entity.Application;
+import jdk.jshell.spi.ExecutionControlProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -98,16 +99,20 @@ public class Trip {
     }
 
     public String departDate() {
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         while (true) {
             Scanner scanDepartDate = new Scanner(System.in);
             System.out.println("When do you want to leave?");
-            System.out.println("Format: MM/DD/YYYY ");
+            System.out.println("Format: MM/DD/YYYY");
             departDate = scanDepartDate.nextLine();
+            String[] date = new String[0];
             try {
-                if (departDate.matches("[0-9]{2}+" + "/[0-9]{2}+" + "/[0-9]{4}"))
-                    return departDate;
+                if (departDate.matches("[0-9]{2}+" + "/[0-9]{2}+" + "/[0-9]{4}") && df.parse(departDate).compareTo(df.parse(df.format(new Date())))>=0)
+                        return departDate;
+                throw new Exception("Please correct the format and choose a current or future date!");
+
             } catch (Exception e) {
-                System.out.println("Please enter a valid phone number");
+                System.out.println(e.getMessage());
             }
         }
     }
