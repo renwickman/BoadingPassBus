@@ -21,9 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f943c9f9-e6db-454b-814f-11d45bc66a1c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Itinerary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Itinerary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/itinerary/Sir Robin.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BoardingPassTicket/Itinerary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BoardingPassTicket/Itinerary.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BoardingPassTicket/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BoardingPassTicket/Notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BoardingPassTicket/Trip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BoardingPassTicket/Trip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BoardingPassTicket/itinerary/Sir Robin.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trip.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +113,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9e6f6392-8192-42af-b003-b943722c6057" name="Default Changelist" comment="" />
+      <changelist id="f943c9f9-e6db-454b-814f-11d45bc66a1c" name="Default Changelist" comment="" />
       <created>1604331604351</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
