@@ -1,9 +1,9 @@
 import entity.Application;
+import jdk.jshell.spi.ExecutionControlProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.type.descriptor.java.TimeZoneTypeDescriptor;
-
 import javax.xml.stream.Location;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -67,22 +67,29 @@ public class Trip {
     }
 
     public String enterDepart() {
-        Scanner scanDepart = new Scanner(System.in);
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
         depart = getLocation("Where are you departing from?");
         return depart.getTimeZoneString();
     }
+
     public String enterArrive() {
-        Scanner scanArrive = new Scanner(System.in);
-        arrive = getLocation("Where are you arriving to?");
+        while(true) {
+            arrive = getLocation("Where are you arriving to?");
+            //could also make changes in cities class to remove depart location from list.
+            if (!arrive.equals(depart))
+                break;
+            System.out.println("You cannot arrive where you've departed!");
+        }
+
         return arrive.getTimeZoneString();
     }
 
-    public Locations getLocation(String message){
+    public Locations getLocation(String message) {
         Scanner scan = new Scanner(System.in);
         System.out.println(message);
         System.out.println(cities.toString());
         while (true) {
+            scan.reset();
             try {
                 return cities.getCityList().get(Integer.parseInt(scan.nextLine()) - 1);
             } catch (Exception e) {
@@ -92,16 +99,20 @@ public class Trip {
     }
 
     public String departDate() {
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         while (true) {
             Scanner scanDepartDate = new Scanner(System.in);
             System.out.println("When do you want to leave?");
-            System.out.println("Format: MM/DD/YYYY ");
+            System.out.println("Format: MM/DD/YYYY");
             departDate = scanDepartDate.nextLine();
+            String[] date = new String[0];
             try {
-                if (departDate.matches("[0-9]{2}+" + "/[0-9]{2}+" + "/[0-9]{4}"))
-                    return departDate;
+                if (departDate.matches("[0-9]{2}+" + "/[0-9]{2}+" + "/[0-9]{4}") && df.parse(departDate).compareTo(df.parse(df.format(new Date())))>=0)
+                        return departDate;
+                throw new Exception("Please correct the format and choose a current or future date!");
+
             } catch (Exception e) {
-                System.out.println("Please enter a valid phone number");
+                System.out.println(e.getMessage());
             }
         }
     }
