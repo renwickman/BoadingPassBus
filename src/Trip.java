@@ -67,13 +67,11 @@ public class Trip {
     }
 
     public String enterDepart() {
-        Scanner scanDepart = new Scanner(System.in);
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
         depart = getLocation("Where are you departing from?");
         return depart.getTimeZoneString();
     }
     public String enterArrive() {
-        Scanner scanArrive = new Scanner(System.in);
         arrive = getLocation("Where are you arriving to?");
         return arrive.getTimeZoneString();
     }
