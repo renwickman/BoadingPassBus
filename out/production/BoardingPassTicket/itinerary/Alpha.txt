@@ -1,0 +1,13 @@
+11/04/2020
+Boarding Pass: CTRKT6I64B32Y
+Name: Alpha
+Age: 19
+Gender: M
+Phone Number: 9993338833
+Email: alpha@dog.com
+Departure City: null
+Arrival City: null
+Departure Date: null
+Departure Time: null
+ETA: null
+Total Price: 150.0
