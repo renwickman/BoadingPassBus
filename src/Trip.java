@@ -1,9 +1,9 @@
 import entity.Application;
+import jdk.jshell.spi.ExecutionControlProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.type.descriptor.java.TimeZoneTypeDescriptor;
-
 import javax.xml.stream.Location;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,52 +41,76 @@ public class Trip {
         times.add("06:00 PM");
         times.add("08:00 PM");
         times.add("10:00 PM");
+        updateTrip();
     }
 
-  public String enterDepart() {
+    public void updateTrip() {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Application.class)
+                .buildSessionFactory();
 
-        Scanner scanDepart = new Scanner(System.in);
+        Session session = factory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+            passenger.setOrigin(enterDepart());
+            passenger.setDestination(enterArrive());
+            passenger.setDepartDate(departDate());
+            passenger.setDepartTime(departTime());
+            passenger.setEta(estTimeArrive());
+            session.update(passenger);
+            session.getTransaction().commit();
+        } finally {
+            session.close();
+            factory.close();
+        }
+    }
+
+    public String enterDepart() {
         System.out.println("Hi " + passenger.getName() + "! Glad that you chose Drive Time.  Now let's get started.");
-        System.out.println("Where are you departing from?");
-      for (Locations location: cities.getCityList()
-           ) {
-          System.out.println(location.getId() + "." +location.getTimeZoneString());
-      }
-
-      try{
-          depart = cities.getCityList().get(Integer.parseInt(scanDepart.nextLine())-1);
-      } catch(Exception e){
-          System.out.println(e.getMessage());
-      }
-      return depart.getTimeZoneString();
+        depart = getLocation("Where are you departing from?");
+        return depart.getTimeZoneString();
     }
 
     public String enterArrive() {
-        Scanner scanArrive = new Scanner(System.in);
-        System.out.println("Where are you arriving to?");
-        for (Locations location: cities.getCityList()
-        ) {
-            System.out.println(location.getId() + "." +location.getTimeZoneString());
+        while(true) {
+            arrive = getLocation("Where are you arriving to?");
+            //could also make changes in cities class to remove depart location from list.
+            if (!arrive.equals(depart))
+                return arrive.getTimeZoneString();
+            System.out.println("You cannot arrive where you've departed!");
         }
-        try{
-            arrive = cities.getCityList().get(Integer.parseInt(scanArrive.nextLine())-1);
-        } catch(Exception e){
-
-        }
-        return arrive.getTimeZoneString();
     }
 
-    public String departDate(){
+    public Locations getLocation(String message) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println(message);
+        System.out.println(cities.toString());
+        while (true) {
+            scan.reset();
+            try {
+                return cities.getCityList().get(Integer.parseInt(scan.nextLine()) - 1);
+            } catch (Exception e) {
+                System.out.println("please enter a valid choice!");
+            }
+        }
+    }
+
+    public String departDate() {
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         while (true) {
             Scanner scanDepartDate = new Scanner(System.in);
             System.out.println("When do you want to leave?");
-            System.out.println("Format: MM/DD/YYYY ");
+            System.out.println("Format: MM/DD/YYYY");
             departDate = scanDepartDate.nextLine();
+            String[] date = new String[0];
             try {
-                if (departDate.matches("[0-9]{2}+" + "/[0-9]{2}+" + "/[0-9]{4}"))
-                    return departDate;
+                if (departDate.matches("[0-9]{2}+" + "/[0-9]{2}+" + "/[0-9]{4}") && df.parse(departDate).compareTo(df.parse(df.format(new Date())))>=0)
+                        return departDate;
+                throw new Exception("Please correct the format and choose a current or future date!");
+
             } catch (Exception e) {
-                System.out.println("Please enter a valid phone number");
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -97,7 +121,7 @@ public class Trip {
             Scanner scanDepartTime = new Scanner(System.in);
             System.out.println("What time do you want to leave? (Select a number to choose a time)");
             for (String leaveTime : times) {
-                System.out.println(count + " : " + leaveTime);
+                System.out.println(count + ". " + leaveTime);
                 count++;
             }
             try {
@@ -142,26 +166,5 @@ public class Trip {
 
     }
 
-    public void updateTrip(int appId) {
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Application.class)
-                .buildSessionFactory();
 
-        Session session = factory.getCurrentSession();
-
-        try {
-            session.beginTransaction();
-            Application currentApp = session.get(Application.class, appId);
-            currentApp.setOrigin(enterDepart());
-            currentApp.setDestination(enterArrive());
-            currentApp.setDepartDate(departDate());
-            currentApp.setDepartTime(departTime());
-            currentApp.setEta(estTimeArrive());
-            session.save(currentApp);
-            session.getTransaction().commit();
-        } finally {
-            session.close();
-            factory.close();
-        }
-    }
 }

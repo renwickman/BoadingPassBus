@@ -16,8 +16,11 @@ public class Itinerary {
     public Itinerary(Application newApplicant){
         this.passenger = newApplicant;
         filePath = Paths.get(System.getProperty("user.dir") + "/src/itinerary/" + passenger.getName() + ".txt");
+        createBoardPass();
+        generatePass();
+        createFile();
+        writeToAFile();
     }
-
 
     String createBoardPass(){
         Random rand = new Random();
@@ -30,7 +33,7 @@ public class Itinerary {
             return res.toString();
         }
 
-    void generatePass(int appId){
+    void generatePass(){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Application.class)
                 .buildSessionFactory();
@@ -39,15 +42,14 @@ public class Itinerary {
 
         try {
             session.beginTransaction();
-//            Application currentApp = session.get(Application.class, appId);
             passenger.setBoarding_pass(createBoardPass());
-            session.save(passenger);
+            session.update(passenger);
             session.getTransaction().commit();
         } finally {
+            session.close();
             factory.close();
         }
     }
-
     public void createFile() {
         try {
             Files.createFile(filePath);
@@ -59,10 +61,8 @@ public class Itinerary {
     public void writeToAFile() {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Date date = new Date();
-
         try{
             Files.writeString(filePath, formatter.format(date) + passenger.toString());
-
         } catch (Exception e) {
             e.printStackTrace();
         }

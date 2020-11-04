@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class Locations {
     private int id;
     private String city;
@@ -68,8 +66,9 @@ public class Locations {
         if(!state.equals(""))
             return country+"/"+state+"/"+city; // America/Indiana/Indianapolis;
         return country+"/"+city; //America/New_york
-
-
     }
+
+
+
 
 }
