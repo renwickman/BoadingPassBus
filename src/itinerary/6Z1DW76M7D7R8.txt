@@ -1,0 +1,13 @@
+Date purchased: 11/05/2020
+Boarding Pass: 6Z1DW76M7D7R8
+Name: Arthur Curry
+Age: 35
+Gender: M
+Phone Number: 9998883300
+Email: yahoo@yahoo.com
+Departure City: America/Los_Angeles
+Arrival City: America/Phoenix
+Departure Date: 12/20/2020
+Departure Time: 04:00 PM
+ETA: 12/22/2020 05:09 PM
+Total Price: $650.00
