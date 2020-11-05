@@ -17,7 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
     </content>
-    <orderEntry type="jdk" jdkName="openjdk-15 (2)" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="openjdk-15" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Clojure-1.9.0" level="project" />
     <orderEntry type="module-library">
@@ -37,6 +37,29 @@
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../javafx-sdk-15/Hibernate/Hibernate/JARS/hibernate JAR" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../javafx-sdk-15/Hibernate/Hibernate/JARS/MySQL connector  Jar/mysql-connector-java-8.0.19.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../javafx-sdk-15/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../javafx-sdk-15/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../javafx-sdk-15/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../javafx-sdk-15/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>
