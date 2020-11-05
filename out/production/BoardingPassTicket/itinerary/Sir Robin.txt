@@ -1,0 +1,13 @@
+Date purchased: 11/05/2020
+Boarding Pass: 5Z7U8CUCVHYWV
+Name: Sir Robin
+Age: 444
+Gender: m
+Phone Number: 1122334455
+Email: thewhatever@huh.com
+Departure City: America/New_York
+Arrival City: America/Los_Angeles
+Departure Date: 04/10/2021
+Departure Time: 08:00 AM
+ETA: 04/11/2021 08:59 PM
+Total Price: $260.00

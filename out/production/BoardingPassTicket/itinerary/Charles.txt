@@ -1,0 +1,13 @@
+Date purchased: 11/05/2020
+Boarding Pass: RMJORGT298FZ1
+Name: Charles
+Age: 12
+Gender: M
+Phone Number: 1324567890
+Email: chsaeydev@gmail.com
+Departure City: America/New_York
+Arrival City: America/Los_Angeles
+Departure Date: 12/12/2020
+Departure Time: 06:00 AM
+ETA: 12/13/2020 06:59 PM
+Total Price: $75.00
