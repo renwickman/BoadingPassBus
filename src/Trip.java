@@ -143,6 +143,8 @@ public class Trip {
         distance = Math.round(earthRadius * Math.acos(Math.sin(depart.getLat()) * Math.sin(arrive.getLat())
                 + Math.cos(depart.getLat()) * Math.cos(arrive.getLat()) * Math.cos(depart.getLon() - arrive.getLon())));
 
+        passenger.setDistance(distance);
+
         double distance1 = distance / 50;
         hours = Math.floor(distance1);
         minutes = Math.ceil((distance1 - hours) * 60);
