@@ -60,25 +60,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JARS_Assignment_Resources/MySQL connector  Jar/mysql-connector-java-8.0.19.jar" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="BoardingPassTicket" />
@@ -121,8 +118,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604331604351</updated>
+      <workItem from="1604504075968" duration="387000" />
+      <workItem from="1604504527368" duration="312000" />
+      <workItem from="1604504954429" duration="317000" />
+      <workItem from="1604505401611" duration="249000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -212,12 +216,27 @@
     <state x="474" y="8" key="SettingsEditor" timestamp="1604435663536">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state x="484" y="290" key="IDE.errors.dialog/0.23.1792.1041/1792.23.1366.745@0.23.1792.1041" timestamp="1604505157323" />
+    <state x="531" y="33" key="SettingsEditor" timestamp="1604505647789">
+      <screen x="0" y="23" width="1792" height="1037" />
+    </state>
     <state x="357" y="121" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1604374520319" />
     <state x="474" y="8" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1604435663536" />
+    <state x="531" y="33" key="SettingsEditor/0.23.1792.1036/1792.23.1366.745@0.23.1792.1036" timestamp="1604499822997" />
+    <state x="531" y="33" key="SettingsEditor/0.23.1792.1037/1792.23.1366.745@0.23.1792.1037" timestamp="1604505647789" />
+    <state x="531" y="33" key="SettingsEditor/0.23.1792.1041/1792.23.1366.745@0.23.1792.1041" timestamp="1604503719305" />
     <state x="332" y="83" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1604431926089">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="332" y="83" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1600.860@0.0.1600.860" timestamp="1604431926089" />
+    <state x="264" y="127" key="new project wizard" timestamp="1604503351109">
+      <screen x="0" y="23" width="1792" height="1042" />
+    </state>
+    <state x="264" y="127" key="new project wizard/0.23.1792.1042/1792.23.1366.745@0.23.1792.1042" timestamp="1604503351109" />
+    <state x="505" y="252" width="781" height="676" key="search.everywhere.popup" timestamp="1604505594021">
+      <screen x="0" y="23" width="1792" height="1037" />
+    </state>
+    <state x="505" y="252" width="781" height="676" key="search.everywhere.popup/0.23.1792.1037/1792.23.1366.745@0.23.1792.1037" timestamp="1604505594021" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -20,6 +20,7 @@ public class Itinerary {
         generatePass();
         createFile();
         writeToAFile();
+        System.out.println("Boarding pass has been created! Please check your itinerary for details.");
     }
 
     String createBoardPass(){
@@ -62,7 +63,7 @@ public class Itinerary {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Date date = new Date();
         try{
-            Files.writeString(filePath, formatter.format(date) + passenger.toString());
+            Files.writeString(filePath, "Date purchased: "+formatter.format(date) + passenger.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
