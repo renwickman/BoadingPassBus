@@ -5,6 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Application {
+    @Transient
+    public double distance;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -161,6 +163,10 @@ public class Application {
     public void setTotal_price(float total_price) {
         this.total_price = total_price;
     }
+
+    public void setDistance(double distance) { this.distance = distance; }
+
+    public double getDistance() {return distance;}
 
     @Override
     public String toString() {
