@@ -15,9 +15,9 @@ public class Itinerary {
     Path filePath;
     public Itinerary(Application newApplicant){
         this.passenger = newApplicant;
-        filePath = Paths.get(System.getProperty("user.dir") + "/src/itinerary/" + passenger.getName() + ".txt");
         createBoardPass();
         generatePass();
+        filePath = Paths.get(System.getProperty("user.dir") + "/src/itinerary/" + passenger.getBoarding_pass() + ".txt");
         createFile();
         writeToAFile();
         System.out.println("Boarding pass has been created! Please check your itinerary for details.");
