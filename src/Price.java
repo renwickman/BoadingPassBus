@@ -14,6 +14,10 @@ public class Price {
     private float priceCheck(){
         float price = (float) 150.00;
 
+        if (passenger.getDistance() > 1500.0) {
+            price += 500.00f;
+        }
+
         if (passenger.getGender().equals("F")){
             price = price * .75f;
         }
@@ -23,6 +27,7 @@ public class Price {
         else if (passenger.getAge() >= 60){
             price = price * .40f;
         }
+        System.out.println(price);
         return price;
     }
 
