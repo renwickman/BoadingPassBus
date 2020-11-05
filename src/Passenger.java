@@ -2,99 +2,81 @@ import entity.Application;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.jboss.logging.Param;
 
-import java.util.Date;
 import java.util.Scanner;
 
 public class Passenger {
     private Application newApplicant;
-    private Date date;
-    public Flight flight;
 
     SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
             .addAnnotatedClass(Application.class)
             .buildSessionFactory();
-
     Session session = factory.getCurrentSession();
+    Scanner scan = new Scanner(System.in);
 
-    public String enterName() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello! Welcome to Direct Airlines");
-        System.out.println("What is your name?");
-        return scanner.nextLine();
-    }
-
-    void createApplicant() {
+    //constructor will create a new entity and save it to DB
+    public Passenger() {
         try {
             newApplicant = new Application();
-            session.beginTransaction();
             newApplicant.setName(enterName());
+            newApplicant.setAge(enterAge());
+            newApplicant.setGender(enterGender());
+            newApplicant.setPhone(enterPhone());
+            newApplicant.setEmail(enterEmail());
+            session.beginTransaction();
             session.save(newApplicant);
             session.getTransaction().commit();
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         } finally {
+            session.close();
             factory.close();
         }
     }
 
-    public String enterEmail(){
-        Scanner scanEmail = new Scanner(System.in);
-        System.out.println("What is your email?");
-        return scanEmail.nextLine();
+    //user will enter their name
+    public String enterName() {
+        return getInput("What is your name?", ".*\\S+.*","Please enter a valid name!" );
     }
-
-    public int enterAge(){
-        Scanner scanAge = new Scanner(System.in);
-        System.out.println("How old are you?");
-        return scanAge.nextInt();
+    //user will enter their age
+    public int enterAge() {
+        return Integer.parseInt(getInput("How old are you?", "[0-9]{1,3}+","Please enter a valid number for your age!" ));
     }
-
-    public String enterGender(){
-        //Make into Boolean?
-        Scanner scanGender = new Scanner(System.in);
-        System.out.println("What is your gender");
-        System.out.println("Enter M for Male");
-        System.out.println("Enter F for Female");
-        return scanGender.next();
+    //user will enter their gender
+    public String enterGender() {
+        return getInput("What is your Gender?\nM) for male\nF) for female", "[FMfm]","Please enter M for male or F for female" );
     }
-
-    public int enterPhone(){
-        Scanner scanPhone = new Scanner(System.in);
-        System.out.println("In case of emergency, what is your phone number?");
-        System.out.println("Correct format: '0123456789'");
-        return scanPhone.nextInt();
+    //user will enter their phone number
+    public long enterPhone() {
+        return Long.parseLong(getInput("In case of emergency, what is your phone number?", "[0-9]{10}+","Please enter a valid phone number" ));
     }
-
-    public void updateInfo(int appId){
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Application.class)
-                .buildSessionFactory();
-
-        Session session = factory.getCurrentSession();
-
+    //user will enter their email address
+    public String enterEmail() {
+        return getInput("What is your email address?", "^[A-Za-z0-9+_.-]+@(.+)$","Email address invalid format. Try again..." );
+    }
+    //accessor for the entity
+    public Application getNewApplicant() {
+        return newApplicant;
+    }
+    //used to get input takes in a prompting message, regex string to compare against, and an error message.
+    public String getInput(String message, String regex, String errorMessage){
+        while (true) {
+            String name = readInput(message);
+            if (name.matches(regex))
+                return name;
+            System.out.println(errorMessage);
+        }
+    }
+    //where we ask for input
+    public String readInput(String message) {
         try {
-            session.beginTransaction();
-            Application currentApp = session.get(Application.class, appId);
-            currentApp.setAge(enterAge());
-            currentApp.setGender(enterGender());
-            currentApp.setPhone(enterPhone());
-            currentApp.setEmail(enterEmail());
-            session.getTransaction().commit();
-        } finally {
-            factory.close();
+            System.out.println(message);
+            scan.reset();
+            return scan.nextLine();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "";
         }
     }
-
-    public Passenger(){
-        createApplicant();
-        updateInfo(newApplicant.getId());
-//        Flight flight = new Flight(newApplicant);
-    }
-
-    public static void main(String[] args) {
-        new Passenger();
-    }
-
-
 }

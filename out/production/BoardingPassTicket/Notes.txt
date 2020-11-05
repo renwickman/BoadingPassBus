@@ -37,10 +37,10 @@ java.text.Format is the parent class and
 java.text.SimpleDateFormat is the subclass
 of java.text.DateFormat class.
 
- In java, converting date into string is
- called formatting and vice-versa parsing.
- In other words, formatting means date to
- string and parsing means string to date.
+In java, converting date into string is
+called formatting and vice-versa parsing.
+In other words, formatting means date to
+string and parsing means string to date.
 ---------------------------------------------------
 Java Clock class is used to provide
 an access to the current instant,
@@ -98,7 +98,967 @@ Java TimeZone Methods
 
 1)  static String[] getAvailableIDs() is used to get all the available IDs supported.
 2)  static TimeZone getDefault() is used to get the default TimeZone for this host.
-3)  String getDisplayName()	is used to return a name of this time zone suitable for presentation to the user in the default locale.
+3)  String getDisplayName()	is used to return a name of this time zone suitable
+for presentation to the user in the default locale.
 4)  String getID() is used to get the ID of this time zone
-5)  int getOffset(long date) is used to return the offset of this time zone from UTC at the specified date.
+5)  int getOffset(long date) is used to return the offset of this time zone
+from UTC at the specified date.
 6)  void setID(String ID) is used to set the time zone ID
+------------------------------------------------------------------------------
+
+America/Los_Angeles
+America/Louisville
+America/New_York
+America/Denver
+America/Detroit
+America/Indianapolis
+America/Nassau
+America/New_York
+America/Phoenix
+
+US/Eastern
+US/Central
+US/Pacific
+US/Mountain
+
+-------------------------------------------------------------------------------
+Example:
+
+import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
+
+public class MyClass {
+  public static void main(String[] args) {
+    LocalDateTime myDateObj = LocalDateTime.now();
+    System.out.println("Before formatting: " + myDateObj);
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+    String formattedDate = myDateObj.format(myFormatObj);
+    System.out.println("After formatting: " + formattedDate);
+  }
+}
+
+Output:
+
+Before Formatting: 2020-10-30T14:07:26.508268
+After Formatting: 30-10-2020 14:07:26
+---------------------------------------------------------------------------------
+The ofPattern() method accepts all sorts of values, if you want to display
+the date and time in a different format.
+
+For example:
+yyyy-MM-dd	"1988-09-29"
+dd/MM/yyyy	"29/09/1988"
+dd-MMM-yyyy	"29-Sep-1988"
+E, MMM dd yyyy	"Thu, Sep 29 1988"
+
+
+import java.time.LocalDateTime;  // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter;  // Import the DateTimeFormatter class
+
+public class MyClass {
+  public static void main(String[] args) {
+    LocalDateTime myDateObj = LocalDateTime.now();
+    System.out.println("Before formatting: " + myDateObj);
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+    String formattedDate = myDateObj.format(myFormatObj);
+    System.out.println("After formatting: " + formattedDate);
+  }
+}
+
+Output:
+
+Before Formatting: 2020-10-30T14:11:18.021910
+After Formatting: 30-10-2020 14:11:18
+----------------------------------------------------------------------------------
+Java supports three timezone constants for Eastern Standard Time
+i.e. "EST", "America/New_York" and "EST5EDT".
+It is very important to understand difference between them to
+correctly utilize these constants for converting date or time in Eastern Standard Time values.
+
+1. Difference between EST, EST5EDT and ‘America/New_York’
+In the eastern part of the USA, timezone offsets are different during summer and winter.
+
+During winter, time is EST. EST is always UTC-5 hours and without consideration for DST (daylight savings time).
+During summer, time is EDT. EDT is UTC-4 hours and with DST.
+
+To correctly represent time, during whole year, you should call it ET (Eastern Time)
+which include EST and EDT both.
+
+From timezone perspective, EST5EDT means either in EST or EDT.
+
+It specifies that the zone uses a standard time of UT-5h called “EST”, a DST of UT-4h called “EDT”,
+and switches between them annually on.
+
+The time zone America/New_York is the same as EST5EDT for all dates after the ‘Uniform Time Act of 1966‘.
+So if you are not using dates before 1966 in your application,
+then you should use America/New_York timezone. It is preferred way.
+
+Always, prefer to use 'America/New_York' for Eastern time. And use ‘ET’ in formatted timestamp.
+It represents EST and EDT both.
+----------------------------------------------------------------------------------
+Format Date to String
+
+Example of formatting Date to String representation:
+
+SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+String date = sdf.format(new Date());
+System.out.println(date); //Prints 26/10/2015
+-----------------------------------------------------------------------------------
+y   = year   (yy or yyyy)
+M   = month  (MM)
+d   = day in month (dd)
+h   = hour (0-12)  (hh)
+H   = hour (0-23)  (HH)
+m   = minute in hour (mm)
+s   = seconds (ss)
+S   = milliseconds (SSS)
+z   = time zone  text        (e.g. Pacific Standard Time...)
+Z   = time zone, time offset (e.g. -0800)
+------------------------------------------------------------------------------------
+public static void main(String[] args) throws ParseException
+{
+    timeStampInJava8();
+}
+
+private static void timeStampInJava8() {
+
+    //Method 1: Get current instant
+    Instant instant = Instant.now();
+
+    //Method 2: From java.sql.Timestamp
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    Instant instant2 = timestamp.toInstant();
+
+    //Method 3: From java.util.Date
+    Date date = new Date();
+    Instant instant3 = date.toInstant();
+
+    System.out.println(instant);    //2018-07-14T08:10:44.270972700Z
+    System.out.println(instant2);   //2018-07-14T08:14:37.943Z
+    System.out.println(instant3);   //2018-07-14T08:14:37.943Z
+}
+----------------------------------------------------------------------------------
+
+//Default pattern is yyyy-MM-dd
+
+LocalDate today = LocalDate.parse("2019-03-29");
+System.out.println(today);
+
+//Custom pattern is yyyy/MM/dd
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+LocalDate date = LocalDate.parse("29-Mar-2019", formatter);
+System.out.println(date);
+
+Console:
+
+2019-03-29
+2019-03-29
+----------------------------------------------------------------------------------
+nextBoolean() reads a boolean value from the user
+nextByte() reads a byte value from the user
+nextDouble() reads a double value from the user
+nextFloat()	reads a float value from the user
+nextInt() reads a int value from the user
+nextLine() reads a String value from the user
+nextLong() reads a long value from the user
+nextShort()	reads a short value from the user
+-----------------------------------------------------------------------------------
+import java.util.Scanner;  // Import the Scanner class
+
+class MyClass {
+  public static void main(String[] args) {
+    Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+    System.out.println("Enter username");
+
+    String userName = myObj.nextLine();  // Read user input
+    System.out.println("Username is: " + userName);  // Output user input
+  }
+}
+------------------------------------------------------------------------------------
+import java.util.Scanner;
+
+public class Exercise36 {
+
+   public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Input the latitude of coordinate 1: ");
+        double lat1 = input.nextDouble();
+        System.out.print("Input the longitude of coordinate 1: ");
+        double lon1 = input.nextDouble();
+        System.out.print("Input the latitude of coordinate 2: ");
+        double lat2 = input.nextDouble();
+        System.out.print("Input the longitude of coordinate 2: ");
+        double lon2 = input.nextDouble();
+
+        System.out.print("The distance between those points is: " + distance_Between_LatLong(lat1, lon1, lat2, lon2) + " km\n");
+    }
+
+    // Points will be converted to radians before calculation
+    public static double distance_Between_LatLong(double lat1, double lon1, double lat2, double lon2) {
+        lat1 = Math.toRadians(lat1);
+        lon1 = Math.toRadians(lon1);
+        lat2 = Math.toRadians(lat2);
+        lon2 = Math.toRadians(lon2);
+
+        double earthRadius = 6371.01 * 0.621; //Miles
+        return Math.round(earthRadius * Math.acos(Math.sin(lat1)*Math.sin(lat2) + Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1 - lon2)));
+    }
+}
+------------------------------------------------------------------------------------------
+New York Latitude and Longitude (40.7648, -73.9808)
+Los Angeles Latitude and Longitude (34.05223, -118.24368)
+Detroit Latitude and Longitude (42.331427, -83.045754)
+Phoenix Latitude and Longitude (33.448377, -112.074037)
+Louisville Latitude and Longitude (38.252665, -85.758456)
+Indianapolis Latitude and Longitude (39.76863, -86.15804)
+-------------------------------------------------------------------------------------------
+HashMap<String, Double, Double> cities = new HashMap<String, Double, Double> ();
+
+cities.put("New York", 40.7648, -73.9808);
+cities.put("Los Angeles", 34.05223, -118.24368);
+cities.put("Detroit", 42.331427, -83.045754);
+cities.put("Phoenix", 33.448377, -112.074037);
+cities.put("Louisville", 38.252665, -85.758456);
+cities.put("Indianapolis", 39.76863, -86.15804);
+-------------------------------------------------------------------------------------------
+speedOfBus = 50;
+-------------------------------------------------------------------------------------------
+public class Main {
+
+    public static void main(String[] args) {
+
+            Scanner input = new Scanner(System.in);
+            System.out.print("Input the latitude of coordinate 1: ");
+            double lat1 = input.nextDouble();
+            System.out.print("Input the longitude of coordinate 1: ");
+            double lon1 = input.nextDouble();
+            System.out.print("Input the latitude of coordinate 2: ");
+            double lat2 = input.nextDouble();
+            System.out.print("Input the longitude of coordinate 2: ");
+            double lon2 = input.nextDouble();
+
+            System.out.print("The distance between those points is: " + distance_Between_LatLong(lat1, lon1, lat2, lon2) + " miles\n");
+            System.out.println();
+
+            double distance1 = distance_Between_LatLong(lat1, lon1, lat2, lon2)/50;
+            double distance2 = Math.floor(distance_Between_LatLong(lat1, lon1, lat2, lon2)/50);
+
+            System.out.println(distance1);
+            System.out.println(distance2);
+            System.out.println(distance1 - distance2);
+            System.out.println(Math.ceil((distance1 - distance2) * 60.0));
+
+        }
+
+        // Points will be converted to radians before calculation
+        public static double distance_Between_LatLong(double lat1, double lon1, double lat2, double lon2) {
+            lat1 = Math.toRadians(lat1);
+            lon1 = Math.toRadians(lon1);
+            lat2 = Math.toRadians(lat2);
+            lon2 = Math.toRadians(lon2);
+
+            double earthRadius = 6371.01 * 0.621; //Miles
+            return Math.round(earthRadius * Math.acos(Math.sin(lat1)*Math.sin(lat2) + Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1 - lon2)));
+        }
+    }
+    -------------------------------------------------------------------------------------------
+                HashMap<Integer, String> cities = new HashMap<Integer, String> ();
+                    cities.put(1, "New York");
+                    cities.put(2, "Los Angeles");
+                    cities.put(3, "Detroit");
+                    cities.put(4, "Phoenix");
+                    cities.put(5, "Louisville");
+                    cities.put(6, "Indianapolis");
+
+                HashMap<Double, Double> location = new HashMap<Double, Double> ();
+                    location.put(40.7648, -73.9808);
+                    location.put(34.05223, -118.24368);
+                    location.put(42.331427, -83.045754);
+                    location.put(33.448377, -112.074037);
+                    location.put(38.252665, -85.758456);
+                    location.put(39.76863, -86.15804);
+
+                List<Location> list = new ArrayList<>();
+                list.add(new Location(1, "New York", 40.7648, -73.9808));
+                list.add(new Location(1, "Los Angeles", 34.05223, -118.24368));
+                list.add(new Location(1, "Detroit", 42.331427, -83.045754));
+                list.add(new Location(1, "Phoenix", 33.448377, -112.074037));
+                list.add(new Location(1, "Louisville", 38.252665, -85.758456));
+                list.add(new Location(1, "Indianapolis", 39.76863, -86.15804));
+    -------------------------------------------------------------------------------------------
+    public class TimeZoneConversionExample1 {
+
+    	public static void main(String[] args) {
+    		//Getting Calendar Instance
+    		Calendar calendar = Calendar.getInstance();
+    		Date date = calendar.getTime();
+
+    		//Getting DateFormat Instance
+    		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+
+    		//Setting Time for Europe/London
+    		dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/London"));
+    		System.out.println("Time in Europe::");
+    		System.out.println(dateFormat.format(date));
+
+    		//Setting Time for Asia/Calcutta
+    		dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
+    		System.out.println("Time in Asia::");
+    		System.out.println(dateFormat.format(date));
+    	}
+    }
+
+    Output:
+    Time in Europe::
+    08/12/2019 08:35
+    Time in Asia::
+    08/12/2019 01:05
+    -------------------------------------------------------------------------------------------
+            denverTime.add(Calendar.HOUR, 3);
+            denverTime.add(Calendar.MINUTE, -5);
+            denverTime.add(Calendar.YEAR, -10);
+    -------------------------------------------------------------------------------------------
+            Calendar localTime = Calendar.getInstance();
+
+            int hour = localTime.get(Calendar.HOUR);
+            int minute = localTime.get(Calendar.MINUTE);
+            int year = localTime.get(Calendar.YEAR);
+
+            // Print the local time
+            System.out.printf("Local time: %02d:%02d %02d\n", hour, minute, year);
+
+            // Create a calendar object for representing a Denver time zone.
+            Calendar denverTime = new GregorianCalendar(TimeZone.getTimeZone("America/Denver"));
+            denverTime.setTimeInMillis(localTime.getTimeInMillis());
+            hour = denverTime.get(Calendar.HOUR);
+            minute = denverTime.get(Calendar.MINUTE);
+            year = denverTime.get(Calendar.YEAR);
+
+            System.out.printf("Denver time: %02d:%02d %02d\n", hour, minute, year);
+
+            // Create a calendar object for representing a Indianapolis time zone.
+            Calendar indianapolisTime = new GregorianCalendar(TimeZone.getTimeZone("America/Indianapolis"));
+            indianapolisTime.setTimeInMillis(localTime.getTimeInMillis());
+            hour = indianapolisTime.get(Calendar.HOUR);
+            minute = indianapolisTime.get(Calendar.MINUTE);
+            year = indianapolisTime.get(Calendar.YEAR);
+
+            System.out.printf("Indianapolis time: %02d:%02d %02d\n", hour, minute, year);
+
+            Output:
+
+            Local time: 00:11 2020
+            Denver time: 11:11 2020
+            Indianapolis time: 01:11 2020
+    -------------------------------------------------------------------------------------------
+     TimeZone pst = TimeZone.getTimeZone("America/Los_Angeles");
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTimeZone(pst);
+            System.out.println(pst.getID());
+            System.out.println("Hour at Los Angeles= " + calendar.get(Calendar.HOUR_OF_DAY));
+    //        System.out.println("Minute at Los Angeles= " + calendar.get(Calendar.MINUTE));
+
+            calendar.add(Calendar.HOUR, +5);
+    //        calendar.add(Calendar.MINUTE, +30);
+            System.out.println("Hour at Los Angeles= " + calendar.get(Calendar.HOUR_OF_DAY));
+
+            TimeZone est = TimeZone.getTimeZone("America/New_York");
+    -------------------------------------------------------------------------------------------
+            //create 1st calendar
+            TimeZone pst = TimeZone.getTimeZone("PST");
+            Calendar cal = Calendar.getInstance(pst);
+
+            //create 2nd calendar
+            TimeZone cst = TimeZone.getTimeZone("CST");
+            Calendar cal2 = Calendar.getInstance(cst);
+
+            System.out.println("PST: " + cal.getTimeZone().getDisplayName());
+            System.out.println("CST: " + cal2.getTimeZone().getDisplayName());
+
+            //Getting Calendar Instance
+            Calendar calendar = Calendar.getInstance();
+            Date date = calendar.getTime();
+
+            //Getting DateFormat Instance
+            DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+
+            //Setting Time for Los Angeles
+            dateFormat.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+            System.out.println("Time in Los Angeles::");
+            System.out.println(dateFormat.format(date));
+
+            //Setting Time for New York
+            dateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+            System.out.println("Time in New York::");
+            System.out.println(dateFormat.format(date));
+
+            Output:
+            PST: Pacific Standard Time
+            CST: Central Standard Time
+            Time in Los Angeles::
+            11/01/2020 12:55
+            Time in New York::
+            11/01/2020 03:55
+    -------------------------------------------------------------------------------------------
+    java.util.TimeZone.setID() Method
+    The setID(String ID) method is used to set the time zone ID.
+    This does not change any other data in the time zone object.
+
+    java.util.TimeZone.getID() Method
+    The getID() method is used to get the ID of this time zone.
+
+    // create time zone object
+    TimeZone timezone = TimeZone.getTimeZone("Europe/Paris");
+
+    // checking ID of this time zone
+    System.out.println("ID value is :" + timezone.getID());
+
+    //Output: ID value is :Europe/Paris
+    -------------------------------------------------------------------------------------------
+    private static void log(String[] availableIDs) {
+
+                System.out.println("\nHere are all list of timezones for your reference:");
+                for (String temp : availableIDs) {
+                    System.out.println(temp);
+                }
+            }
+    -------------------------------------------------------------------------------------------
+
+            TimeZone pst = TimeZone.getTimeZone("PST");
+            Calendar cal = Calendar.getInstance();
+
+            Date date = cal.getTime();
+            System.out.println(pst.getID());
+            cal.setTimeZone(pst);
+
+            cal.add(Calendar.HOUR, 2);
+            cal.add(Calendar.DATE, 5);
+            System.out.println(cal.getTime());
+
+            TimeZone est = TimeZone.getTimeZone("EST");
+            System.out.println(est.getID());
+            cal.setTimeZone(est);
+            cal.add(Calendar.HOUR, -4);
+            cal.add(Calendar.DATE, 10);
+            System.out.println(cal.getTime());
+
+            System.out.println("EST: " + cal.getTimeZone().getDisplayName());
+
+    -------------------------------------------------------------------------------------------
+    America/Los_Angeles (UTC-07:00)
+    America/Denver (UTC-06:00)
+
+    US/Eastern (UTC-04:00)
+    US/Central (UTC-05:00)
+    US/Mountain (UTC-06:00)
+    US/Pacific (UTC-07:00)
+    US/Alaska (UTC-08:00)
+    US/Hawaii (UTC-10:00)
+    -------------------------------------------------------------------------------------------
+            String dateInString = "11-01-2020 05:01 PM";
+            LocalDateTime ldt = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern(DATE_FORMAT));
+
+            ZoneId chicagoZoneId = ZoneId.of("America/Chicago");
+            System.out.println("TimeZone : " + chicagoZoneId);
+
+            //LocalDateTime + ZoneId = ZonedDateTime
+            ZonedDateTime chicagoZonedDateTime = ldt.atZone(chicagoZoneId);
+            System.out.println("Date (Chicago) : " + chicagoZonedDateTime);
+
+            ZoneId newYokZoneId = ZoneId.of("America/New_York");
+            System.out.println("TimeZone : " + newYokZoneId);
+
+            ZonedDateTime nyDateTime = chicagoZonedDateTime.withZoneSameInstant(newYokZoneId);
+            System.out.println("Date (New York) : " + nyDateTime);
+
+            DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            System.out.println("\n---DateTimeFormatter---");
+            System.out.println("Date (Chicago) : " + format.format(chicagoZonedDateTime));
+            System.out.println("Date (New York) : " + format.format(nyDateTime));
+
+    -------------------------------------------------------------------------------------------
+    ZonedDateTime class is used to store all
+    date and time fields, to a precision of
+    nanoseconds, and a time-zone with a zone
+    offset used to handle ambiguous local
+    date-times.
+
+        //ZonedDateTime class is used to store all
+        //date and time fields, to a precision of
+        //nanoseconds, and a time-zone with a zone
+        //offset used to handle ambiguous local
+        //date-times.
+
+        LocalDate represents a date (year, month, day (yyyy-MM-dd))
+
+        LocalTime represents a time (hour, minute, second and nanoseconds (HH-mm-ss-ns))
+
+        LocalDateTime represents both a date and a time (yyyy-MM-dd-HH-mm-ss-ns)
+
+        DateTimeFormatter is a Formatter for displaying and parsing date-time objects
+
+    -------------------------------------------------------------------------------------------
+    private static final String DATE_FORMAT = "MM-dd-yyyy hh:mm a";
+
+        public static void main(String[] args)  throws ParseException {
+
+            String dateInString = "01-22-2020 06:00 PM";
+            LocalDateTime ldt = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern(DATE_FORMAT));
+
+            ZoneId losAngelesZoneId = ZoneId.of("America/Los_Angeles");
+            System.out.println("TimeZone : " + losAngelesZoneId);
+
+            //LocalDateTime + ZoneId = ZonedDateTime
+            ZonedDateTime laZonedDateTime = ldt.atZone(losAngelesZoneId);
+            System.out.println("Date (Los Angeles) : " + laZonedDateTime);
+
+
+            //ZoneId for New_York
+            ZoneId newYokZoneId = ZoneId.of("America/New_York");
+            System.out.println("TimeZone : " + newYokZoneId);
+
+            ZonedDateTime nyDateTime = laZonedDateTime.withZoneSameInstant(newYokZoneId);
+            System.out.println("Date (New York) : " + nyDateTime);
+
+            DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT);
+            System.out.println("\n---DateTimeFormatter---");
+            System.out.println("Date (Los Angeles) : " + format.format(laZonedDateTime));
+            System.out.println("Date (New York) : " + format.format(nyDateTime));
+        }
+------------------------------------------------------------------------------------------------------------------------
+        if (passenger.getOrigin() == "1") {
+            lat1 = Math.toRadians(34.05223);
+            lon1 = Math.toRadians(-118.24368);
+        } else if (passenger.getOrigin() == "2") {
+            lat1 = Math.toRadians(40.7648);
+            lon1 = Math.toRadians(-73.9808);
+        } else if (passenger.getOrigin() == "3") {
+            lat1 = Math.toRadians(42.331427);
+            lon1 = Math.toRadians(-83.045754);
+        }
+
+        if (passenger.getDestination() == "1") {
+            lat2 = Math.toRadians(34.05223);
+            lon2 = Math.toRadians(-118.24368);
+        } else if (passenger.getDestination() == "2") {
+            lat2 = Math.toRadians(40.7648);
+            lon2 = Math.toRadians(-73.9808);
+        } else if (passenger.getDestination() == "3") {
+            lat1 = Math.toRadians(42.331427);
+            lon1 = Math.toRadians(-83.045754);
+        }
+----------------------------------------------------------------------------------------------------------------------
+
+        /*if (enterDepart().equals("1")) {
+            Calendar newYorkTime = new GregorianCalendar(TimeZone.getTimeZone("America/New_york"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/New_york");
+
+            ZoneId nyZoneId = ZoneId.of("America/New_york");
+
+            ZonedDateTime nyZonedDateTime = ldt.atZone(nyZoneId);
+
+            newYorkTime.add(Calendar.HOUR, (int) hours);
+            newYorkTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
+
+            endDateTime = nyZonedDateTime.withZoneSameInstant(nyZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+
+        } else if (enterDepart().equals("2")) {
+            //Calendar into Los Angeles TimeZone
+            Calendar laTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Los_angeles");
+
+            ZoneId laZoneId = ZoneId.of("America/Los_angeles");
+
+            ZonedDateTime laZonedDateTime = ldt.atZone(laZoneId);
+
+            //Make String into a Date/Time
+            laTime.add(Calendar.HOUR, (int) hours);
+            laTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = laZonedDateTime.withZoneSameInstant(laZoneId);
+
+            endDateTime = laZonedDateTime.withZoneSameInstant(laZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        }  else if (enterDepart().equals("3")) {
+            Calendar detTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Detroit");
+
+            ZoneId detZoneId = ZoneId.of("America/Detroit");
+
+            ZonedDateTime detZonedDateTime = ldt.atZone(detZoneId);
+
+            detTime.add(Calendar.HOUR, (int) hours);
+            detTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = detZonedDateTime.withZoneSameInstant(detZoneId);
+            //Make String into a Date/Time
+            endDateTime = detZonedDateTime.withZoneSameInstant(detZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("4")) {
+            Calendar phoenixTime = new GregorianCalendar(TimeZone.getTimeZone("America/Detroit"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Phoenix");
+
+            ZoneId detZoneId = ZoneId.of("America/Phoenix");
+
+            ZonedDateTime phoenixZonedDateTime = ldt.atZone(detZoneId);
+
+            phoenixTime.add(Calendar.HOUR, (int) hours);
+            phoenixTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = phoenixZonedDateTime.withZoneSameInstant(detZoneId);
+            //Make String into a Date/Time
+            endDateTime = phoenixZonedDateTime.withZoneSameInstant(detZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("5")) {
+            Calendar louTime = new GregorianCalendar(TimeZone.getTimeZone("America/Louisville"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Louisville");
+
+            ZoneId louZoneId = ZoneId.of("America/Louisville");
+
+            ZonedDateTime louZonedDateTime = ldt.atZone(louZoneId);
+
+            louTime.add(Calendar.HOUR, (int) hours);
+            louTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = louZonedDateTime.withZoneSameInstant(louZoneId);
+            //Make String into a Date/Time
+            endDateTime = louZonedDateTime.withZoneSameInstant(louZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+        } else if (enterDepart().equals("6")) {
+            Calendar indTime = new GregorianCalendar(TimeZone.getTimeZone("America/Indiana/Indianapolis"));
+//            TimeZone timezone = TimeZone.getTimeZone("America/Indiana/Indianapolis");
+
+            ZoneId indZoneId = ZoneId.of("America/Indiana/Indianapolis");
+
+            ZonedDateTime indZonedDateTime = ldt.atZone(indZoneId);
+
+            indTime.add(Calendar.HOUR, (int) hours);
+            indTime.add(Calendar.MINUTE, (int) minutes);
+
+            ZonedDateTime endZoneTime = indZonedDateTime.withZoneSameInstant(indZoneId);
+            //Make String into a Date/Time
+            endDateTime = indZonedDateTime.withZoneSameInstant(indZoneId);
+            DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm");
+            strDate = dateFormat.format(endDateTime);
+                    return strDate;
+        }*/
+
+                /*
+                System.out.println("Where are you looking to go?");
+                System.out.println("1. America/New_York");
+                System.out.println("2. America/Los_Angeles");
+                System.out.println("3. America/Detroit");
+                System.out.println("4. America/Phoenix");
+                System.out.println("5. America/Louisville");
+                System.out.println("6. America/Indianapolis");
+                switch (scanArrive.nextLine()){
+                    case "1":
+                        passenger.setDestination("America/New_York");
+                        lat2 = Math.toRadians(40.7648);
+                        lon2 = Math.toRadians(-73.9808);
+                        break;
+                    case "2":
+                        passenger.setDestination("America/Los_Angeles");
+                        lat2 = Math.toRadians(34.05223);
+                        lon2 = Math.toRadians(-118.24368);
+                        break;
+                    case "3":
+                        passenger.setDestination("America/Detroit");
+                        lat2 = Math.toRadians(42.331427);
+                        lon2 = Math.toRadians(-83.045754);
+                        break;
+                    case "4":
+                        passenger.setDestination("America/Phoenix");
+                        lat2 = Math.toRadians(33.448377);
+                        lon2 = Math.toRadians(-112.074037);
+                        break;
+                    case "5":
+                        passenger.setDestination("America/Louisville");
+                        lat2 = Math.toRadians(38.252665);
+                        lon2 = Math.toRadians(-85.758456);
+                        break;
+                    case "6":
+                        passenger.setDestination("America/Indiana/Indianapolis");
+                        lat2 = Math.toRadians(39.76863);
+                        lon2 = Math.toRadians(-86.15804);
+                        break;
+                    default:
+                        System.out.printf("%s ... you made an invalid entry", passenger.getName());
+                }*/
+                --------------------------------------------------------------------------------------
+                    String dateInString = "01-22-2020 06:00 PM";
+                    LocalDateTime ldt = LocalDateTime.parse(dateInString, DateTimeFormatter.ofPattern(DATE_FORMAT));
+
+                    ZoneId losAngelesZoneId = ZoneId.of("America/Los_Angeles");
+                            System.out.println("TimeZone : " + losAngelesZoneId);
+
+                                    //LocalDateTime + ZoneId = ZonedDateTime
+                                    ZonedDateTime laZonedDateTime = ldt.atZone(losAngelesZoneId);
+                                    System.out.println("Date (Los Angeles) : " + laZonedDateTime);
+
+
+                                    //ZoneId for New_York
+                                    ZoneId newYokZoneId = ZoneId.of("America/New_York");
+                                    System.out.println("TimeZone : " + newYokZoneId);
+
+                                    ZonedDateTime nyDateTime = laZonedDateTime.withZoneSameInstant(newYokZoneId);
+                                    System.out.println("Date (New York) : " + nyDateTime);
+
+                                    DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT);
+                                    System.out.println("\n---DateTimeFormatter---");
+                                    System.out.println("Date (Los Angeles) : " + format.format(laZonedDateTime));
+                                    System.out.println("Date (New York) : " + format.format(nyDateTime));
+                                    }
+                                    }
+
+                    public static void main(String[] args) {
+
+                        HashMap<Integer, String> cities = new HashMap<Integer, String> ();
+                        cities.put(1, "New York");
+                        cities.put(2, "Los Angeles");
+                        cities.put(3, "Detroit");
+                        cities.put(4, "Phoenix");
+                        cities.put(5, "Louisville");
+                        cities.put(6, "Indianapolis");
+
+                        HashMap<Double, Double> location = new HashMap<Double, Double> ();
+                        location.put(40.7648, -73.9808);
+                        location.put(34.05223, -118.24368);
+                        location.put(42.331427, -83.045754);
+                        location.put(33.448377, -112.074037);
+                        location.put(38.252665, -85.758456);
+                        location.put(39.76863, -86.15804);
+
+                        Scanner input = new Scanner(System.in);
+                        System.out.print("Input the latitude of coordinate 1: ");
+                        double lat1 = input.nextDouble();
+                        System.out.print("Input the longitude of coordinate 1: ");
+                        double lon1 = input.nextDouble();
+                        System.out.print("Input the latitude of coordinate 2: ");
+                        double lat2 = input.nextDouble();
+                        System.out.print("Input the longitude of coordinate 2: ");
+                        double lon2 = input.nextDouble();
+
+                        System.out.print("The distance between those points is: " + distance_Between_LatLong(lat1, lon1, lat2, lon2) + " miles\n");
+                        System.out.println();
+
+                        double distance1 = distance_Between_LatLong(lat1, lon1, lat2, lon2)/500;
+                        double distance2 = Math.floor(distance_Between_LatLong(lat1, lon1, lat2, lon2)/500);
+
+                        System.out.println(distance1);
+                        System.out.println(distance2);
+                        System.out.println(distance1 - distance2);
+                        System.out.println(Math.ceil((distance1 - distance2) * 60.0));
+
+                    }
+
+                    // Points will be converted to radians before calculation
+                    public static double distance_Between_LatLong(double lat1, double lon1, double lat2, double lon2) {
+                        lat1 = Math.toRadians(lat1);
+                        lon1 = Math.toRadians(lon1);
+                        lat2 = Math.toRadians(lat2);
+                        lon2 = Math.toRadians(lon2);
+
+                        double earthRadius = 6371.01 * 0.621; //Miles
+                        return Math.round(earthRadius * Math.acos(Math.sin(lat1)*Math.sin(lat2) + Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1 - lon2)));
+                    }
+                	 write your code here
+                        System.out.println(LocalDate.now());
+                        System.out.println(LocalTime.now());
+                        System.out.println(LocalDateTime.now());
+
+                        java.util.Date date=new java.util.Date();
+                        System.out.println(date);
+
+                        Clock c = Clock.systemDefaultZone();
+                        System.out.println(c.getZone());
+
+                        ZoneId z = ZoneId.systemDefault();
+                        System.out.println(z.getDisplayName(TextStyle.FULL, Locale.ROOT));
+
+                        Calendar calendar = Calendar.getInstance();
+                        System.out.println("The current date is : " + calendar.getTime());
+                        calendar.add(Calendar.DATE, -15);
+
+                        System.out.println("15 days ago: " + calendar.getTime());
+
+                        calendar.add(Calendar.MONTH, 4);
+
+                        System.out.println("4 months later: " + calendar.getTime());
+
+                        calendar.add(Calendar.YEAR, 2);
+
+                        System.out.println("2 years later: " + calendar.getTime());
+
+
+                        String[] id = TimeZone.getAvailableIDs();
+
+                        System.out.println("In TimeZone class available Ids are: ");
+
+                        for (int i=0; i<id.length; i++){
+
+                            System.out.println(id[i]);
+
+                        }
+
+
+                        TimeZone timezone = TimeZone.getTimeZone("America/Chicago");
+                        System.out.println("Value of ID is: " + timezone.getDisplayName());
+
+
+                        TimeZone zone = TimeZone.getDefault();
+                        String name = zone.getDisplayName();
+                        System.out.println("Display name for default time zone: "+ name);
+
+                        }
+
+
+                }
+
+                        System.out.println(LocalDate.now());
+                        System.out.println(LocalTime.now());
+                        System.out.println(LocalDateTime.now());
+
+                            java.util.Date date=new java.util.Date();
+                            System.out.println(date);
+
+                            Clock c = Clock.systemDefaultZone();
+                            System.out.println(c.getZone());
+
+                            ZoneId z = ZoneId.systemDefault();
+                            System.out.println(z.getDisplayName(TextStyle.FULL, Locale.ROOT));
+
+                    Calendar calendar = Calendar.getInstance();
+                            System.out.println("The current date is : " + calendar.getTime());
+                                    calendar.add(Calendar.DATE, -15);
+                                    System.out.println("15 days ago: " + calendar.getTime());
+                                    calendar.add(Calendar.MONTH, 4);
+                                    System.out.println("4 months later: " + calendar.getTime());
+                                    calendar.add(Calendar.YEAR, 2);
+                                    System.out.println("2 years later: " + calendar.getTime());
+
+                                    String[] id = TimeZone.getAvailableIDs();
+                                    System.out.println("In TimeZone class available Ids are: ");
+                                    for (int i=0; i<id.length; i++){
+                        System.out.println(id[i]);
+                        }
+                        TimeZone timezone = TimeZone.getTimeZone("America/Chicago");
+                        System.out.println("Value of ID is: " + timezone.getDisplayName());
+
+
+
+
+                            TimeZone zone = TimeZone.getDefault();
+                            String name = zone.getDisplayName();
+                            System.out.println("Display name for default time zone: "+ name);
+
+------------------------------------------------------------------------------------------------------------------------
+
+            static Boolean testRun2() {
+                    final String DATE_FORMAT = "MM/dd/yyyy";
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter dateForm = DateTimeFormatter.ofPattern(DATE_FORMAT);
+                    String departDate;
+                        while (true) {
+                            Scanner scanDepartDate = new Scanner(System.in);
+                            System.out.println("When do you want to leave?");
+                            System.out.println("Format: MM/DD/YYYY ");
+                            departDate = scanDepartDate.nextLine();
+                            try {
+                                if (departDate.matches("[0-9]{2}+" + "/[0-9]{2}+" + "/[0-9]{4}")){
+                                    LocalDateTime newDate = LocalDateTime.parse(departDate, dateForm);
+                                    if (newDate.isAfter(now) || newDate.isEqual(now)){
+                                        return true;
+                                    }
+                                }
+                                    return true;
+                            } catch (Exception e) {
+                                System.out.println("Please enter a valid date");
+                            }
+                        }
+                }
+                --------------------------------------------------------------------------------------------------
+                import java.text.SimpleDateFormat;
+                import java.time.LocalDate;
+                import java.time.LocalDateTime;
+                import java.time.ZoneId;
+                import java.time.ZonedDateTime;
+                import java.time.format.DateTimeFormatter;
+                import java.util.*;
+
+                public class testRun {
+
+                    public static void main(String[] args) {
+                        System.out.println(testRun());
+                    }
+
+                    static String testRun() {
+                        final String DATE_FORMAT = "MM/dd/yyyy hh:mm a";
+                        String departDate = "01/20/2021";
+                        String departTime = "10:00 PM";
+                        ZonedDateTime endDateTime;
+                        String arriveTime;
+                        String departTimeParse;
+
+                        String leaveDateTime = departDate + " " + departTime;
+
+                        DateTimeFormatter dateFormat2 = DateTimeFormatter.ofPattern(DATE_FORMAT);
+                        LocalDateTime ldt = LocalDateTime.parse(leaveDateTime, dateFormat2);
+                        departTimeParse = dateFormat2.format(ldt);
+                        System.out.println(ldt);
+                        System.out.println(departTimeParse);
+                        System.out.println();
+
+                        double earthRadius = 6371.01 * 0.621;
+
+                        double distance = Math.round(earthRadius * Math.acos(Math.sin(40.7648) * Math.sin(34.05223)
+                                + Math.cos(40.7648) * Math.cos(34.05223) * Math.cos(-73.9808 - -118.24368)));
+
+                        System.out.println(distance);
+
+                        double distance1 = distance / 50;
+                        System.out.println(distance1);
+
+                        double hours = Math.floor(distance1);
+                        System.out.println(hours);
+
+                        double minutes = Math.ceil((distance1 - hours) * 60);
+                        System.out.println(minutes);
+                        System.out.println();
+
+                        LocalDateTime ldt2 = ldt.plusHours((long) hours).plusMinutes((long) minutes);
+                        DateTimeFormatter dateFormat3 = DateTimeFormatter.ofPattern(DATE_FORMAT);
+                        ZoneId zoneId2 = ZoneId.of("America/Los_Angeles");
+                        System.out.println(ldt2.format(dateFormat3));
+                        System.out.println(ldt.atZone(zoneId2));
+
+                        TimeZone.getTimeZone("America/New_york");
+                        Calendar endTime = new GregorianCalendar(TimeZone.getTimeZone("America/Los_angeles"));
+
+                        ZoneId zoneId = ZoneId.of("America/Los_Angeles");
+
+                        ZonedDateTime dateTime = ldt2.atZone(zoneId);
+
+                        System.out.println(dateTime);
+
+
+                        endDateTime = dateTime.withZoneSameInstant(zoneId);
+                //        System.out.println(endDateTime);
+                        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(DATE_FORMAT);
+                        arriveTime = dateFormat.format(endDateTime);
+                //        System.out.println(arriveTime);
+                        return arriveTime;
+                    }
+                }

@@ -1,0 +1,13 @@
+11/04/2020
+Boarding Pass: 7GGMF1NY2IVNQ
+Name: Hello
+Age: 334
+Gender: M
+Phone Number: 1234567890
+Email: world@gmail.com
+Departure City: America/Detroit
+Arrival City: America/Phoenix
+Departure Date: 11/05/2020
+Departure Time: 12:00 PM
+ETA: 11/05/2020 12:00 PM
+Total Price: $60.00

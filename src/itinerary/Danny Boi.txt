@@ -1,0 +1,13 @@
+Date purchased: 11/05/2020
+Boarding Pass: Q4A3C6HKX7J87
+Name: Danny Boi
+Age: 33
+Gender: M
+Phone Number: 1234567890
+Email: danny@boi.com
+Departure City: America/Los_Angeles
+Arrival City: America/Detroit
+Departure Date: 04/10/2021
+Departure Time: 10:00 AM
+ETA: 04/17/2021 02:19 PM
+Total Price: $150.00

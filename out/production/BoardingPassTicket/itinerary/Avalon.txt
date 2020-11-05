@@ -1,0 +1,13 @@
+11/04/2020
+Boarding Pass: DXWNZTCL5T7R9
+Name: Avalon
+Age: 9
+Gender: F
+Phone Number: 5758889999
+Email: avalon@gmail.com
+Departure City: America/New_York
+Arrival City: America/Los_Angeles
+Departure Date: 01/22/2021
+Departure Time: 12:00 PM
+ETA: 01/24/2021 12:59 AM
+Total Price: $112.50

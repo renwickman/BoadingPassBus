@@ -6,33 +6,35 @@ import org.hibernate.cfg.Configuration;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class Itinerary {
-
-    Path filePath = Paths.get(System.getProperty("user.dir") + "\\src\\itinerary.txt");
-
-    public void createFile() {
-        try {
-            Files.createFile(filePath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    private Application passenger;
+    Path filePath;
+    public Itinerary(Application newApplicant){
+        this.passenger = newApplicant;
+        filePath = Paths.get(System.getProperty("user.dir") + "/src/itinerary/" + passenger.getName() + ".txt");
+        createBoardPass();
+        generatePass();
+        createFile();
+        writeToAFile();
+        System.out.println("Boarding pass has been created! Please check your itinerary for details.");
     }
 
     String createBoardPass(){
         Random rand = new Random();
         String pass ="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i <= 18; i++){
+        for (int i = 0; i <= 12; i++){
             int randIndex = rand.nextInt(pass.length());
                 res.append(pass.charAt(randIndex));
             }
             return res.toString();
         }
 
-    void generatePass(int appId){
+    void generatePass(){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Application.class)
                 .buildSessionFactory();
@@ -41,29 +43,27 @@ public class Itinerary {
 
         try {
             session.beginTransaction();
-            Application currentApp = session.get(Application.class, appId);
-            currentApp.setBoarding_pass(createBoardPass());
+            passenger.setBoarding_pass(createBoardPass());
+            session.update(passenger);
             session.getTransaction().commit();
         } finally {
+            session.close();
             factory.close();
         }
     }
-
+    public void createFile() {
+        try {
+            Files.createFile(filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void writeToAFile() {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
         try{
-//            Files.writeString(filePath, Get Today's Date);
-//            Files.writeString(filePath, Passenger.getName);
-//            Files.writeString(filePath, Passenger.getAge);
-//            Files.writeString(filePath, Passenger.getGender);
-//            Files.writeString(filePath, Passenger.getPhone);
-//            Files.writeString(filePath, Passenger.getEmail);
-//            Files.writeString(filePath, Passenger.getOrigin);
-//            Files.writeString(filePath, Passenger.getDestination);
-//            Files.writeString(filePath, Passenger.getDepartDate);
-//            Files.writeString(filePath, Passenger.getDepartTime);
-//            Files.writeString(filePath, Passenger.getTotalPrice);
-//            Files.writeString(filePath, Passenger.getEta);
+            Files.writeString(filePath, "Date purchased: "+formatter.format(date) + passenger.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
