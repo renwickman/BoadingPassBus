@@ -41,7 +41,7 @@ public class Main {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
+            return true;
         }
     }
 }
