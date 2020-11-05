@@ -105,7 +105,7 @@ public class Trip {
             departDate = scanDepartDate.nextLine();
             String[] date = new String[0];
             try {
-                if (df.parse(departDate).compareTo(df.parse(df.format(new Date())))>=0)
+                if (departDate.matches("[0-9]{2}+" + "/[0-9]{2}+" + "/[0-9]{4}") && df.parse(departDate).compareTo(df.parse(df.format(new Date())))>=0)
                         return departDate;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
