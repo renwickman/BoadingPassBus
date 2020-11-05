@@ -56,7 +56,6 @@ public class Application {
         this.id = id;
     }
 
-
     public String getName() {
         return name;
     }
