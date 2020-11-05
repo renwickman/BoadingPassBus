@@ -1,11 +1,7 @@
 import entity.Application;
-import jdk.jshell.spi.ExecutionControlProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.type.descriptor.java.TimeZoneTypeDescriptor;
-import javax.xml.stream.Location;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
